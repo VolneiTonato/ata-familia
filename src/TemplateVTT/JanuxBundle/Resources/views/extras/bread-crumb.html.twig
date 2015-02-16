@@ -1,0 +1,25 @@
+
+{% if januxBread is defined %}
+
+        {% set tot = januxBread|length %}
+
+        <ul class="breadcrumb">
+        {% for i in range(0, tot - 1) %}
+            
+            {% if i == (tot - 1)  %}
+                {% set class = 'active' %}
+            {% else %}
+                {% set class = '' %}
+            {% endif %}
+            
+            <li class="{{ class }}">
+                 {% if i == (tot - 1) %}
+                    {{ januxBread[i].text }}
+                {% else %}
+                    <a href="{{ januxBread[i].url }}">{{ januxBread[i].text }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+
+{% endif %}

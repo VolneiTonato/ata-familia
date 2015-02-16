@@ -1,0 +1,13 @@
+
+{% block form_row %}
+    <div class="control-group">
+        {{ form_label(form,null, {'label_name' : form.vars.name ~ ': ', 'label_attr' : {'class' : 'control-label'}}) }}
+
+        {% set attr = attr|merge({'class': 'span6 typeahead ' ~ (attr.class|default(''))|trim }) %}
+        
+        <div class="controls">
+            {{ form_widget(form, {'attr' : attr}) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}

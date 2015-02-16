@@ -1,0 +1,3 @@
+event_app_override_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: EventAppOverrideBundle:Default:index }

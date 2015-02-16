@@ -1,0 +1,6 @@
+services:
+    ata_app.ini_controller:
+        class: AtaApp\AtaBundle\Controller\BaseController
+        properties:
+            _bread : "@vtt.breads_crumb"
+#        arguments: [@service_id, "plain_value", %parameter%]

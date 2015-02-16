@@ -1,0 +1,3 @@
+template_vtt_utils_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: TemplateVTTUtilsBundle:Default:index }

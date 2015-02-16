@@ -1,0 +1,56 @@
+{% extends "AtaAppAtaBundle::layout.html.twig" %}
+
+
+{% form_theme form 'TemplateVTTJanuxBundle:extras:form.field.html.twig' %}
+
+{% block body %}
+
+    <div class="row-fluid sortable">
+        <div class="box span12">
+            <div class="box-header" data-original-title>
+                <h2><i class="halflings-icon white edit"></i><span class="break"></span>Cadastro ATA</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form class="form-horizontal">
+                    <fieldset>
+
+                        {{ form_row(form.nome) }}
+
+                        {{ form_row(form.municipio.nome) }}
+
+                        {{ form_row(form.municipio.sigla) }}
+
+                        {{ form_row(form.telefones.vars.prototype.numero) }}
+
+                        <div class="form-actions">
+                            <button type="submit" id="salvar" class="btn btn-primary">Salvar</button>
+                            <button type="reset" class="btn">Limpar</button>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block javascriptLocal %}
+    <script>
+        $("#salvar").on('click', function (e) {
+            
+            AjaxVTT.send({vttUrl : '{{ path('ata_teste') }}', vttEvent : e}, function(result){
+                MensagemVTT.show({mensagem: result.mensagem})
+                           .close(function(r){
+                               alert('fechou');
+                           });
+            });
+            return false;
+            
+        });
+    </script>
+{% endblock %}

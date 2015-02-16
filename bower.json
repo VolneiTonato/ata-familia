@@ -1,0 +1,23 @@
+{
+  "name": "JS bundle VTT",
+  "version": "0.1.0",
+  "description": "JS Bundle VTT",
+  
+  "authors": [
+    "Volnei Tonato"
+  ],
+  "license": "MIT",
+  
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src"
+  ],
+  
+  "dependencies": {
+    "blockui" : "master"
+  }
+}

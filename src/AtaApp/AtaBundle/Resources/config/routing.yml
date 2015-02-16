@@ -1,0 +1,3 @@
+ata_app_ata_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AtaAppAtaBundle:Default:index }
