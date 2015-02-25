@@ -1,0 +1,5 @@
+services:
+    vtt.breads_crumb:
+        class: VTT\UtilsBundle\Libraries\BreadsCrumb
+    vtt.render_view_janux:
+        class: VTT\Templates\JanuxBundle\Libraries\RenderView

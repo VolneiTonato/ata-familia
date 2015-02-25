@@ -1,13 +1,4 @@
-event_app_override:
-    resource: "@EventAppOverrideBundle/Resources/config/routing.yml"
-    prefix:   /
-
 ata_app_ata:
-    resource: "@AtaAppAtaBundle/Controller"
-    prefix:   /
-    type: annotation
-
-js_template_bundle:
     resource: "@AtaAppAtaBundle/Controller"
     prefix:   /
     type: annotation

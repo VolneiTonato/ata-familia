@@ -2,13 +2,13 @@
 
 namespace AtaApp\AtaBundle\Controller;
 
-use EventApp\OverrideBundle\Event\Controller\InitializableBaseController;
+use VTT\BaseControllerBundle\Controller\BaseControllerVTT;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\Container;
 
-class BaseController extends InitializableBaseController {  
+class BaseController extends BaseControllerVTT {  
     
-    use \TemplateVTT\UtilsBundle\Libraries\traitControllerTemplateVTT;   
+    use \VTT\UtilsBundle\Libraries\traitControllerTemplateVTT;  
 
     public function __init(Container $container, Request $request) {    
         $this->_libRenderView = $container->get('vtt.render_view_janux');

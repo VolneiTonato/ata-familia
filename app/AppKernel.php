@@ -17,10 +17,10 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AtaApp\AtaBundle\AtaAppAtaBundle(),
-            new TemplateVTT\JanuxBundle\TemplateVTTJanuxBundle(),
-            new TemplateVTT\UtilsBundle\TemplateVTTUtilsBundle(),
-            new EventApp\OverrideBundle\EventAppOverrideBundle(),
-            new TemplateVTT\JsBundle\TemplateVTTJsBundle(),
+            new VTT\BaseControllerBundle\VTTBaseControllerBundle(),
+            new VTT\JsBundle\VTTJsBundle(),
+            new VTT\Templates\JanuxBundle\VTTTemplatesJanuxBundle(),
+            new VTT\UtilsBundle\VTTUtilsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

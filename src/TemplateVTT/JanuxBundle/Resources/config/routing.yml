@@ -1,3 +1,0 @@
-template_vtt_janux_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: TemplateVTTJanuxBundle:Default:index }
