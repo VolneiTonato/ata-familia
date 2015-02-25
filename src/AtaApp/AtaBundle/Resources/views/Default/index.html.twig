@@ -9,4 +9,21 @@
             <a href=""> gerenciar</a>
         </div>	
     </div>
+
+    <button onclick="teste();">click</button>
+{% endblock %}
+
+
+{% block javascriptLocal %}
+    {{ parent() }}
+    <script>
+        function teste(){
+            QuestionVTT.run().no(function(event){
+                alert('no');
+            }).yes(function(event){
+                alert('yes');
+            })
+        }
+    </script>
+
 {% endblock %}

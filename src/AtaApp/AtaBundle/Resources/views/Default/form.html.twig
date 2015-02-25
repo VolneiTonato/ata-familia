@@ -41,6 +41,9 @@
 
 {% block javascriptLocal %}
     <script>
+        
+        LoaderVTT.run();
+        /*
         $("#salvar").on('click', function (e) {
             
             AjaxVTT.send({vttUrl : '{{ path('ata_teste') }}', vttEvent : e}, function(result){
@@ -51,6 +54,6 @@
             });
             return false;
             
-        });
+        });*/
     </script>
 {% endblock %}

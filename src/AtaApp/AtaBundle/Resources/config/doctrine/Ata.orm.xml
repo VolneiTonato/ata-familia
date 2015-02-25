@@ -12,6 +12,6 @@
       </join-columns>
     </many-to-one>
     
-    <one-to-many field="telefones" target-entity="Telefone" />
+    
   </entity>
 </doctrine-mapping>

@@ -14,7 +14,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- end: Mobile Specific -->
 
-
         {% block styles %}
             <link rel="stylesheet" id="bootstrap-style" href="{{ asset('bundles/vtttemplatesjanux/css/bootstrap.min.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/vtttemplatesjanux/css/bootstrap-responsive.min.css') }}" />
@@ -128,6 +127,10 @@
                 <span style="text-align:left;float:left">&copy; 2013 <a href="http://themifycloud.com/downloads/janux-free-responsive-admin-dashboard-template/" alt="Bootstrap_Metro_Dashboard">JANUX Responsive Dashboard</a></span>
             </p>
         </footer>
+        
+        <span id="BASE_URL_VTT"></span>
+        <span id="PATH_SOURCES_VTT"></span>
+        <span id="FULL_URL_VTT"></span>
 
         <!-- start: JavaScript-->
         {% block javascript %}
@@ -163,13 +166,19 @@
             <script src="{{ asset('bundles/vtttemplatesjanux/js/jquery.elfinder.min.js') }}" type="text/javascript"></script>
             <script src="{{ asset('bundles/vtttemplatesjanux/js/custom.js') }}" type="text/javascript"></script>
             
+            <script src="{{ asset('js/plugins/blockui/jquery.blockUI.js')|raw }}"></script>
             
-            
-            {% include 'VTTJsBundle:scripts:include.js.twig' %}
+            <script src="{{ asset('bundles/vttjs/bootstrap_init.vtt.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('bundles/vttjs/classJS/MensagemVTT/MensagemVTT.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('bundles/vttjs/classJS/ModalVTT/ModalVTT.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('bundles/vttjs/classJS/LoaderVTT/LoaderVTT.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('bundles/vttjs/classJS/AjaxVTT/AjaxVTT.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('bundles/vttjs/classJS/QuestionVTT/QuestionVTT.js') }}" type="text/javascript"></script>
             
         {% endblock %}
-
-        {% block javascriptLocal %} {% endblock %}
+        
+        
+        {% block javascriptLocal %}{% endblock %}
 
 
         <!-- end: JavaScript-->

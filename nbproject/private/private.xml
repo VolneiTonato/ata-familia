@@ -11,15 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/web-developer/www/ata-familia/src/VTT/JsBundle/Resources/views/scripts/mensagem.vtt.js.twig</file>
-            <file>file:/D:/web-developer/www/ata-familia/src/VTT/JsBundle/Resources/views/scripts/datatable.js.twig</file>
-            <file>file:/D:/web-developer/www/ata-familia/bower.json</file>
-            <file>file:/D:/web-developer/www/ata-familia/src/AtaApp/AtaBundle/Resources/views/layout.html.twig</file>
-            <file>file:/D:/web-developer/www/ata-familia/src/VTT/JsBundle/Resources/views/scripts/ajax.js.twig</file>
-            <file>file:/D:/web-developer/www/ata-familia/src/VTT/JsBundle/Resources/views/scripts/include.js.twig</file>
-            <file>file:/D:/web-developer/www/ata-familia/src/VTT/JsBundle/Resources/views/scripts/loader.vtt.js.twig</file>
-            <file>file:/D:/web-developer/www/ata-familia/src/AtaApp/AtaBundle/Resources/views/Default/form.html.twig</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

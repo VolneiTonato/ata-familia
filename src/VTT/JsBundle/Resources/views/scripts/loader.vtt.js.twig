@@ -12,6 +12,8 @@
            
            var settings = $.extend({}, defaults, options);
            
+           
+           
            $body.remove(settings.id)
                 .append('{% include "VTTJsBundle:scripts:templates-mensagem/loader.html.twig" %}')
                 .find('h1').prop('titulo-mensagem', function(){
