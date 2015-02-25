@@ -8,7 +8,7 @@ var AjaxVTT = (function () {
         vttUrl: null,
         vttAsync: true,
         vttEvent: null,
-        vttCache: false,
+        vttCache: false
     };
 
     var barProgress = function () {
@@ -33,10 +33,10 @@ var AjaxVTT = (function () {
             async: settings.vttAsync,
             cache : settings.vttCache,
             beforeSend: function (xhr) {
-                LoaderVTT.run();
+                LoaderVTT.runLoader();
             }
         }).done(function (data, textStatus, jqXHR) {
-            LoaderVTT.stop();
+            LoaderVTT.stopLoader();
         }).fail(function (jqXHR, textStatus, errorThrown) {
 
         }).always(function (data, textStatus, errorThrown) {
@@ -55,7 +55,7 @@ var AjaxVTT = (function () {
                     case 'json':
                     default :
                         if (!data.ok) {
-                            MensagemVTT.show({mensagem: data.mensagem});
+                            MensagemVTT.showMensagem({mensagem: data.mensagem});
                         } else {
                             fnc(data);
                             fnc = undefined;
@@ -77,6 +77,7 @@ $.xhrPool.abortAll = function () {
 };
 
 $.ajaxSetup({
+    cache : false,
     beforeSend: function (jqXHR) {
         $.xhrPool.push(jqXHR);
     },

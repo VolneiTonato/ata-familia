@@ -41,19 +41,23 @@
 
 {% block javascriptLocal %}
     <script>
-        
-        LoaderVTT.run();
-        /*
+
+        //LoaderVTT.run();
+
         $("#salvar").on('click', function (e) {
-            
-            AjaxVTT.send({vttUrl : '{{ path('ata_teste') }}', vttEvent : e}, function(result){
-                MensagemVTT.show({mensagem: result.mensagem})
-                           .close(function(r){
-                               alert('fechou');
-                           });
+
+            AjaxVTT.send({vttUrl: '{{ path('ata_teste') }}', vttEvent: e}, function (result) {
+
+                QuestionVTT.runQuestion().noQuestion(function (e) {
+                    alert('no question');
+                });
+                /*
+                MensagemVTT.showMensagem({mensagem: result.mensagem})
+                        .closeMensagem(function (r) {
+                            alert('fechou');
+                        });
+                        */
             });
-            return false;
-            
-        });*/
+        });
     </script>
 {% endblock %}

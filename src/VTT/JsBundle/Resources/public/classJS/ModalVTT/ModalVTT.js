@@ -5,7 +5,7 @@ var ModalVTT = function(){
     var id = "#MODAL_VTT_ID";
     
     
-    this.show = function(conteudoHtml){
+    this.showModal = function(conteudoHtml){
         $body.remove(id);
        
         $.get(ConfiguracoesVTT.pathRoot() + 'bundles/vttjs/classJS/ModalVTT/templates/modal.html').done(function (result) {

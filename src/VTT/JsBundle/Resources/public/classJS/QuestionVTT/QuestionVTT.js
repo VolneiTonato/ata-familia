@@ -20,8 +20,12 @@ var QuestionVTT = function(){
             settings = configurations;
     };
     
-    this.run = function(options){
+    this.runQuestion = function(options){
+        hide();
+        
         init(options);
+        
+        $body.remove(settings.id);
         
         $.get(ConfiguracoesVTT.pathRoot() + 'bundles/vttjs/ClassJS/QuestionVtt/templates/question.html', function(html){
             $body.append(html);
@@ -39,18 +43,18 @@ var QuestionVTT = function(){
         
     };
     
-    this.yes = function(fnc){
+    this.yesQuestion = function(fnc){
         $body.delegate(settings.botoes.idYesBtn, 'click', function (event) {
             event.preventDefault();
             $(settings.id).remove();
             hide();
 
-            if (fnc !== undefined){
+            if (fnc !== undefined)
                 fnc(event);
-                fnc = undefined;
-            }
             
-            event.stopPropagation();
+            
+            fnc = undefined;
+     
             
         });
         
@@ -59,18 +63,16 @@ var QuestionVTT = function(){
         
     };
     
-    this.no = function(fnc){
+    this.noQuestion = function(fnc){
         $body.delegate(settings.botoes.idCloseBtn, 'click', function (event) {
             event.preventDefault();
             $(settings.id).remove();
             hide();
 
-            if (fnc !== undefined){
+            if (fnc !== undefined)
                 fnc(event);
-                fnc = undefined;
-            }
             
-            event.stopPropagation();
+            fnc = undefined;
         });
 
         return this;

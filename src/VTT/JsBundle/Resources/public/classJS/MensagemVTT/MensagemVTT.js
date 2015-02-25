@@ -20,10 +20,12 @@ var MensagemVTT = (function () {
             settings = configurations;
     };
 
-    this.show = function (param) {
+    this.showMensagem = function (param) {
         hide();
 
         init(param);
+        
+        $body.remove(settings.id);
 
         //tipos == success, warning, danger, info
         var color = "#fff";
@@ -51,7 +53,7 @@ var MensagemVTT = (function () {
                 break;
         }
 
-        $.get(ConfiguracoesVTT.pathRoot() + 'bundles/vttjs/classJS/MensagemVTT/templates/show.html', {cache : true}).done(function (result) {
+        $.get(ConfiguracoesVTT.pathRoot() + 'bundles/vttjs/classJS/MensagemVTT/templates/show.html').done(function (result) {
             $body.append(result);
             
             $(settings.id).find('h1').prop('titulo-mensagem', function () {
@@ -67,7 +69,7 @@ var MensagemVTT = (function () {
         return this;
     };
 
-    this.close = function (fnc) {
+    this.closeMensagem = function (fnc) {
         $body.delegate(settings.botoes.idCloseBtn, 'click', function (event) {
             event.preventDefault();
             $(settings.id).remove();
