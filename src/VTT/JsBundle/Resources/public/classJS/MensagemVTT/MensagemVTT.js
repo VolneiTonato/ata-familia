@@ -1,31 +1,36 @@
 function MensagemVTT(){
 
-    var $body = $('body');
+    var $body = null;
 
     var configurations = {
-        id: '#ID_SHOW_MENSAGEM_VTT',
         mensagem: 'houve um erro ao receber os dados! Tente novamente.',
         tipo: 'danger',
         botoes: {
-            idCloseBtn: '#ID_SHOW_MENSAGEM_VTT_BTN_CLOSE'
+            valuesCloseBtn : 'Fechar'
         }
     };
 
     var settings = {};
 
-    var init = function (param) {
+    var setup = function (param) {
         if (param !== undefined)
             settings = $.extend({}, configurations, param);
         else
             settings = configurations;
+        
+        
+        settings.id = "#ID_SHOW_MENSAGEM_VTT";
+        settings.botoes.idCloseBtn = "#ID_SHOW_MENSAGEM_VTT_BTN_CLOSE";
+        
+        $body = $('body');
+        
     };
 
     this.show = function (param) {
-        hide();
-
-        init(param);
         
-        $body.remove(settings.id);
+        _destruct();
+
+        setup(param);
 
         //tipos == success, warning, danger, info
         var color = "#fff";
@@ -53,13 +58,14 @@ function MensagemVTT(){
                 break;
         }
 
-        $.get(ConfiguracoesVTT.pathRoot() + 'bundles/vttjs/classJS/MensagemVTT/templates/show.html').done(function (result) {
-            $body.append(result);
+        $.get(ConfiguracoesVTT.pathRoot() + 'bundles/vttjs/classJS/MensagemVTT/templates/show.html').done(function (html) {
             
-            $(settings.id).find('h1').prop('titulo-mensagem', function () {
-                $(this).text(settings.mensagem);
-            });
-
+            html = html.replace('{{SHOW_MENSAGEM_VTT_BTN_CLOSE_VALUE}}', settings.botoes.valuesCloseBtn);
+            html = html.replace('{{MENSAGEM_VTT}}', settings.mensagem);
+            
+            
+            $body.append(html);
+            
             $.blockUI({
                 message: $(settings.id),
                 css: {backgroundColor: background, color: color}
@@ -72,8 +78,8 @@ function MensagemVTT(){
     this.close = function (fnc) {
         $body.delegate(settings.botoes.idCloseBtn, 'click', function (event) {
             event.preventDefault();
-            $(settings.id).remove();
-            hide();
+            
+            _destruct();
 
             if (fnc !== undefined)
                 fnc(event);
@@ -84,7 +90,9 @@ function MensagemVTT(){
         return this;
     };
 
-    var hide = function () {
+    var _destruct = function () {
+        $body.find(settings.id).css({'display' : 'block'}).remove();
+        $body.off("click", settings.botoes.idCloseBtn);
         $.unblockUI();
     };
 

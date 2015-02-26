@@ -10,24 +10,12 @@
         </div>	
     </div>
 
-    <button id="click">click</button>
+
 {% endblock %}
 
 
 {% block javascriptLocal %}
     {{ parent() }}
-    <script>
-        $("#click").on('click', function () {
-            var q = QuestionVTT().run();
-                    
-            q.no(function (event) {
-                console.log('no');
-            });    
-            
-            q.yes(function (event) {
-                console.log('yes');
-            });
-        });
-    </script>
+
 
 {% endblock %}

@@ -20,7 +20,7 @@ class DefaultController extends BaseController
     public function __init(Container $container, Request $request) {
         parent::__init($container, $request);
         
-        $this->_libRenderView->setPageTitle('Festa Família Gaieschki');
+        $this->_libRenderView->setPageTitle('demo js');
         $this->_libBreadCrumb->addItem('Inicio', $this->generateUrl('ata_familia'));
     }
 

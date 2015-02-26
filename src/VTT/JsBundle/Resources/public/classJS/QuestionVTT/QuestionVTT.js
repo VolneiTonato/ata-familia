@@ -3,43 +3,49 @@ function QuestionVTT(){
     var $body = null;
 
     var configurations = {
-        id: '#ID_QUESTION_VTT',
         mensagem: 'Deseja excluir o item selecionado?',
         botoes: {
-            idYesBtn: '#ID_QUESTION_VTT_BTN_YES',
-            idNoBtn : '#ID_QUESTION_VTT_BTN_NO'
+            valueNoBtn : 'Não',
+            valueYesBtn : 'Sim'
         }
     };
 
     var settings = {};
 
-    var init = function (param) {
+    var setup = function (param) {
         if (param !== undefined)
             settings = $.extend({}, configurations, param);
         else
             settings = configurations;
         
+        settings.botoes.idNoBtn = "#ID_QUESTION_VTT_BTN_NO";
+        settings.botoes.idYesBtn = "#ID_QUESTION_VTT_BTN_YES";
+        settings.id = "#ID_QUESTION_VTT";
+        
         $body = $('body');
-        
-        
     };
     
-    this.run = function(options){
+    
+
+    
+    this.run = function(options, fnc){
         
-        init(options);
+        setup(options);
         
-        hide();
+        _destruct();
 
         $.get(ConfiguracoesVTT().pathRoot() + 'bundles/vttjs/ClassJS/QuestionVtt/templates/question.html', function(html){
-            $body.append(html);
             
-            $(settings.id).find('h2').prop('question', function () {
-                $(this).text(settings.mensagem);
-            });
+            html = html.replace('{{QUESTION}}', settings.mensagem);
+            html = html.replace('{{VALUE_QUESTION_VTT_BTN_NO}}', settings.botoes.valueNoBtn);
+            html = html.replace('{{VALUE_QUESTION_VTT_BTN_YES}}', settings.botoes.valueYesBtn);
+
+            $body.append(html);
 
             $.blockUI({
                 message: $(settings.id)
             });
+            
         });
         
         return this;
@@ -50,30 +56,32 @@ function QuestionVTT(){
         
         $body.on('click', settings.botoes.idYesBtn, function (event) {            
             event.preventDefault();
-            hide();
+            
+            _destruct();
 
             if (fnc !== undefined)
                 fnc(event);            
-            
         });
-       //return this;        
+      return this;        
     };
     
     this.no = function(fnc){
         
         $body.on('click', settings.botoes.idNoBtn, function (event) {
             event.preventDefault();
-            hide();
+            _destruct();
 
             if (fnc !== undefined)
                fnc(event);
             
         });
-        //return this;
+        return this;
     };
     
-    var hide = function () {
+    var _destruct = function () {
         $body.find(settings.id).css({'display' : 'block'}).remove();
+        $body.off("click", settings.botoes.idNoBtn);
+        $body.off("click", settings.botoes.idYesBtn);
         $.unblockUI();
     };
     
