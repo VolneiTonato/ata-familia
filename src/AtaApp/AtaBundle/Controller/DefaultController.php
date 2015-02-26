@@ -7,7 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\DependencyInjection\Container,
     Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\HttpFoundation\JsonResponse;
+    Symfony\Component\HttpFoundation\JsonResponse,
+   Symfony\Component\HttpFoundation\Response;
 
 use AtaApp\AtaBundle\Form\AtaType;
 
@@ -29,7 +30,8 @@ class DefaultController extends BaseController
      * @Template("AtaAppAtaBundle:Default:index.html.twig")
      */
     public function indexAction()
-    {        
+    {     
+
         $this->_libRenderView->setBreadCrumb($this->_libBreadCrumb);
         
         $atas = $this->repository('AtaAppAtaBundle:Ata')->findAll();
@@ -56,13 +58,61 @@ class DefaultController extends BaseController
         ));
     }
     
+    
     /**
-     * @Route("/teste", name="ata_teste")
+     * @Route("/save", name="ata_save")
      * @Method({"POST"})
      */
-    public function teste()
+    public function saveAction(Request $request)
     {
-        return new JsonResponse(array('ok' => true, 'mensagem' => 'blza'));
+        var_dump($request->request->all());
+        exit();
+        $ata = new \AtaApp\AtaBundle\Entity\Ata();
+        $form = $this->createForm(new AtaType(), $ata);
+        
+        if($request->isMethod('POST')){
+            $form->submit($request);
+            
+            var_dump($ata);
+            exit();
+            
+        }
+    }
+   
+    
+    /**
+     * @Route("/list", name="ata_list")
+     * @Method({"POST", "GET"})
+     */
+    public function listarAtasAction(Request $request)
+    {
+        $dataTableAta = new \AtaApp\AtaBundle\Repository\DataTable\AtaDataTable($request, $this->em());
+        return new Response($dataTableAta->getAtas());
+    }
+    
+    
+    /**
+     * @Route("/teste")
+     * @Method({"GET", "POST"})
+     */
+    public function testeAction(Request $request)
+    {
+        $request->setMethod('GET');
+        $dados = array(
+            'draw' => 1,
+            'start' => 0,
+            'length' => 10,
+            'columns' => array( array('name' => 'descricao')),
+            'search' => array('value' => 'a'),
+            'order' => array('column' => 1, 'dir' => 'asc')
+        );
+        $request->request->replace($dados);
+        $response = $this->forward('AtaAppAtaBundle:Default:listarAtas', array());
+        
+        var_dump($response->getContent());
+        exit();
+        
+        
     }
 
 }

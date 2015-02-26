@@ -3,6 +3,7 @@
 namespace AtaApp\AtaBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use VTT\UtilsBundle\Libraries\DataTable;
 
 /**
  * AtaRepository
@@ -12,4 +13,46 @@ use Doctrine\ORM\EntityRepository;
  */
 class AtaRepository extends EntityRepository
 {
+    public function ataPaginacao(DataTable &$dataTable)
+    {
+        $dq = $this->createQueryBuilder('A');
+        
+        
+        if($dataTable->isLimitOffSetQuery()){
+            $dq->setFirstResult($dataTable->getPaginaAtual())
+                ->setMaxResults($dataTable->getQuantidadeItemPagina());
+        }
+        /*
+        if(strlen($dataTable->getSearch()) > 0){        
+            foreach($dataTable->getColumns() as $colunasDt){
+                $fieldColumn = $colunasDt['name'];
+                if($fieldColumn === 'descricao'){
+                    $dq->orWhere($dq->expr()->like('upper(P.descricao)', ":{$fieldColumn}"))
+                        ->setParameter($fieldColumn, sprintf('%%%s%%', \Util\HelpersBundle\Helpers\StringsHelper::toUpperCase($dataTable->getSearch())));
+                }elseif($fieldColumn === 'codigo_barra'){
+                    $dq->orWhere($dq->expr()->like('C.codigo', ":{$fieldColumn}"))
+                        ->setParameter($fieldColumn, sprintf('%s%%', $dataTable->getSearch()));
+                }
+            }
+        }
+        
+        switch ($dataTable->getColumnNameOrderBy()){
+            case 'descricao':
+                $columnOrder = 'P.descricao';
+                break;
+            case 'codigo_barra':
+                $columnOrder = 'C.codigo';
+                break;
+        }
+        
+        if(isset($columnOrder)){
+            $dq->orderBy($columnOrder, $dataTable->getTypeOrderBy());
+        }     */
+
+        $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($dq, true);
+        
+        $dataTable->paginationToPaginatorORM($paginator);
+
+        return $paginator->getQuery()->getResult();
+    }
 }

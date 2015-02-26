@@ -1,6 +1,6 @@
 function MensagemVTT(){
 
-    var $body = null;
+    var $body = $('body');
 
     var configurations = {
         mensagem: 'houve um erro ao receber os dados! Tente novamente.',
@@ -28,9 +28,9 @@ function MensagemVTT(){
 
     this.show = function (param) {
         
-        _destruct();
-
         setup(param);
+        
+        _destruct();
 
         //tipos == success, warning, danger, info
         var color = "#fff";
@@ -58,7 +58,7 @@ function MensagemVTT(){
                 break;
         }
 
-        $.get(ConfiguracoesVTT.pathRoot() + 'bundles/vttjs/classJS/MensagemVTT/templates/show.html').done(function (html) {
+        $.get(ConfiguracoesVTT().pathRoot() + 'bundles/vttjs/classJS/MensagemVTT/templates/show.html').done(function (html) {
             
             html = html.replace('{{SHOW_MENSAGEM_VTT_BTN_CLOSE_VALUE}}', settings.botoes.valuesCloseBtn);
             html = html.replace('{{MENSAGEM_VTT}}', settings.mensagem);

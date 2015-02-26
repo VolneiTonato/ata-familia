@@ -15,7 +15,7 @@ function ConfiguracoesVTT(){
     };
     
     this.baseUrl = function(){
-        return '/ata-familia/web/app_dev.php/';
+        return '/ata-familia/web/';
     };
     
     this.host = function(){

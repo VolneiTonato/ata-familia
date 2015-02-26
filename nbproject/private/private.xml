@@ -11,12 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/web-developer/www/ata-familia/src/AtaApp/AtaBundle/Resources/views/Default/index.html.twig</file>
-            <file>file:/D:/web-developer/www/ata-familia/src/VTT/JsBundle/Resources/public/classJS/QuestionVTT/templates/question.html</file>
-            <file>file:/D:/web-developer/www/ata-familia/src/VTT/JsBundle/Resources/public/classJS/AjaxVTT/AjaxVTT.js</file>
-            <file>file:/D:/web-developer/www/ata-familia/src/VTT/JsBundle/Resources/public/classJS/QuestionVTT/QuestionVTT.js</file>
-            <file>file:/D:/web-developer/www/ata-familia/src/VTT/JsBundle/Resources/public/classJS/MensagemVTT/MensagemVTT.js</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -1,35 +1,41 @@
-var DataTableVTT = function () {
+function DataTableVTT(elementConstrutor) {
     var oTable;
     var element;
-    
-    this.getInstace = function(){
+    var elementDefault = '.data-table';
+
+
+    if (elementConstrutor !== undefined) {
+        run(elementDefault);
+    }
+
+    this.getInstace = function () {
         return oTable;
     };
-    
-    this.getRowSelected = function(id){
 
-        if(oTable.$('tr#')[0] !== undefined){
+    this.getRowSelected = function (id) {
+
+        if (oTable.$('tr#')[0] !== undefined) {
             return oTable.$('tr.selected')[0];
         }
     };
-    
-    
-    var setEventSelectRow = function(){
-        $(element + ' tbody').on('click', 'tr' , function(){
-          var classElement = 'selected';
-          
-          if($(this).hasClass(classElement)){
-              $(this).addClass(classElement);
-          }else{
-              oTable.$('tr.' + classElement).removeClass(classElement);
-              $(this).addClass(classElement);
-          }
+
+
+    var setEventSelectRow = function () {
+        $(element + ' tbody').on('click', 'tr', function () {
+            var classElement = 'selected';
+
+            if ($(this).hasClass(classElement)) {
+                //$(this).removeClass(classElement);
+            } else {
+                oTable.$('tr.' + classElement).removeClass(classElement);
+                $(this).addClass(classElement);
+            }
         });
-        
+
         return this;
     };
-     
-    var defaultsParam = function(){
+
+    var defaultsParam = function () {
         return {
             "destroy": true,
             //"pagingType": "bootstrap",
@@ -62,51 +68,36 @@ var DataTableVTT = function () {
             "aLengthMenu": [
                 //[5, 10, 15, 20, -1],
                 //[5, 10, 15, 20, "All"] // change per page values here
-                [10,20,50],
-                [10,20,50]
+                [10, 20, 50],
+                [10, 20, 50]
             ],
             // set the initial value
             "length": 10,
         };
     };
-    
-    
-    this.zero = function(){
-        run('.data-table');
-        
-        return this;
-    };
-    
-    
-    
-    this.run = function(elementParam, options){
-        
-        if(elementParam === undefined && options === undefined)
+
+
+
+    this.run = function (elementParam, options) {
+
+        if (elementParam === undefined && options === undefined) {
+            console.log('Erro ao iniciar a DataTable! É necessário passar um elemento ou parametros da DataTable para excutar o metodo run()');
             return;
-        
-        if(options !== undefined)
+        }
+
+        if (options !== undefined)
             var settings = $.extend({}, defaultsParam(), options);
         else
             var settings = defaultsParam();
-        
-        if(elementParam === undefined){
-            elementParam = '.data-table';
+
+        if (elementParam === undefined) {
+            elementParam = elementDefault;
         }
-        
-        
-        
+
+
         element = elementParam;
         oTable = $(element).DataTable(settings);
-        
-        
-        
-        
-        
-        $('#dataTables_wrapper .dataTables_filter input').addClass("form-control input-sm").attr("placeholder", "Search");
-        // modify table search input
-        $('#dataTables_wrapper .dataTables_length select').addClass("m-wrap small");
-        // modify table per page dropdown
-        $('#dataTables_wrapper .dataTables_length select').select2();
+
         // initialzie select2 dropdown
         $('#sample_1_column_toggler input[type="checkbox"]').change(function () {
             /* Get the DataTables object again - this is not a recreation, just a get of the object */
@@ -115,19 +106,19 @@ var DataTableVTT = function () {
             //var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
             oTable.columns.visible(iCol, (bVis ? false : true));
             //this.oTable.fnSetColumnVis(iCol, (bVis ? false : true));
-        });    
-        
-        
+        });
+
         return this;
     };
-    
-    this.registrarEventos = function(){
+
+    this.registrarEventos = function () {
         setEventSelectRow();
-        
+
         return this;
     };
-    
+
     return this;
 
-}();
+}
+;
 

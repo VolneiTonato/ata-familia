@@ -9,4 +9,6 @@
 
 {% block javascript %} {{ parent() }}  {% endblock %}
 
-{% block javascriptLocal %} {% endblock %}
+{% block javascriptLocal %}
+    <script src="{{ asset('bundles/ataappata/js/AtaController.js') }}"></script>
+{% endblock %}
