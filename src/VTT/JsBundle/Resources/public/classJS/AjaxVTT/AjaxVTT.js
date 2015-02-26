@@ -1,4 +1,4 @@
-var AjaxVTT = (function () {
+function AjaxVTT() {
 
     var defaults = {
         vttType: 'POST',
@@ -33,10 +33,10 @@ var AjaxVTT = (function () {
             async: settings.vttAsync,
             cache : settings.vttCache,
             beforeSend: function (xhr) {
-                LoaderVTT.runLoader();
+                LoaderVTT().run();
             }
         }).done(function (data, textStatus, jqXHR) {
-            LoaderVTT.stopLoader();
+            LoaderVTT().stop();
         }).fail(function (jqXHR, textStatus, errorThrown) {
 
         }).always(function (data, textStatus, errorThrown) {
@@ -66,7 +66,7 @@ var AjaxVTT = (function () {
         });
     };
     return this;
-}());
+};
 
 $.xhrPool = [];
 $.xhrPool.abortAll = function () {

@@ -1,6 +1,6 @@
-var UtilsVTT = function(){
+function UtilsVTT(){
     
     
     
     
-}();
+};

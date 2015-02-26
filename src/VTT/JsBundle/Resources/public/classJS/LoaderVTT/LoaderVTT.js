@@ -1,8 +1,9 @@
 
-var LoaderVTT = (function () {
+function LoaderVTT(){
+    
     var $body = $('body');
 
-    this.runLoader = function (options) {
+    this.run = function (options) {
 
         var defaults = {
             id: '#VTT_LOADER_ID',
@@ -11,7 +12,7 @@ var LoaderVTT = (function () {
 
         var settings = $.extend({}, defaults, options);
 
-        $.get(ConfiguracoesVTT.pathRoot() + 'bundles/vttjs/classJS/LoaderVTT/templates/loader.html').done(function (result) {
+        $.get(ConfiguracoesVTT().pathRoot() + 'bundles/vttjs/classJS/LoaderVTT/templates/loader.html').done(function (result) {
             $body.remove(settings.id)
                     .append(result)
                     .find('h1').prop('titulo-mensagem', function () {
@@ -25,12 +26,12 @@ var LoaderVTT = (function () {
         return this;
     };
 
-    this.stopLoader  = function () {
+    this.stop  = function () {
         $.unblockUI();
     };
 
 
     return this;
-})();
+};
 
 

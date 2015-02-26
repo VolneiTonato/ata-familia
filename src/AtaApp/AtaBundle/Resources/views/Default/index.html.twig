@@ -10,20 +10,24 @@
         </div>	
     </div>
 
-    <button onclick="teste();">click</button>
+    <button id="click">click</button>
 {% endblock %}
 
 
 {% block javascriptLocal %}
     {{ parent() }}
     <script>
-        function teste(){
-            QuestionVTT.run().no(function(event){
-                alert('no');
-            }).yes(function(event){
-                alert('yes');
-            })
-        }
+        $("#click").on('click', function () {
+            var q = QuestionVTT().run();
+                    
+            q.no(function (event) {
+                console.log('no');
+            });    
+            
+            q.yes(function (event) {
+                console.log('yes');
+            });
+        });
     </script>
 
 {% endblock %}

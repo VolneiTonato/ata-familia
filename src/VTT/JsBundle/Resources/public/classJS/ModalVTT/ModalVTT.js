@@ -1,11 +1,11 @@
 
-var ModalVTT = function(){
+function ModalVTT(){
     
     var $body = $('body');
     var id = "#MODAL_VTT_ID";
     
     
-    this.showModal = function(conteudoHtml){
+    this.show = function(conteudoHtml){
         $body.remove(id);
        
         $.get(ConfiguracoesVTT.pathRoot() + 'bundles/vttjs/classJS/ModalVTT/templates/modal.html').done(function (result) {
@@ -24,4 +24,4 @@ var ModalVTT = function(){
     
     return this;
     
-}();
+};

@@ -1,13 +1,14 @@
-var BootstrapInitVTT = function () {
+function BootstrapInitVTT(){
     
     this.initScripts = function(){
     };
+    
     return this;
-}();
+};
 
 
 
-var ConfiguracoesVTT = function() {
+function ConfiguracoesVTT(){
     
     this.pathRoot = function(){
         return '/ata-familia/web/';
@@ -27,4 +28,4 @@ var ConfiguracoesVTT = function() {
 
     return this;
     
-}();
+};

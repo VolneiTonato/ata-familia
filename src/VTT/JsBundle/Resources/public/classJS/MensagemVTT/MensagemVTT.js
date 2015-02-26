@@ -1,4 +1,4 @@
-var MensagemVTT = (function () {
+function MensagemVTT(){
 
     var $body = $('body');
 
@@ -20,7 +20,7 @@ var MensagemVTT = (function () {
             settings = configurations;
     };
 
-    this.showMensagem = function (param) {
+    this.show = function (param) {
         hide();
 
         init(param);
@@ -69,7 +69,7 @@ var MensagemVTT = (function () {
         return this;
     };
 
-    this.closeMensagem = function (fnc) {
+    this.close = function (fnc) {
         $body.delegate(settings.botoes.idCloseBtn, 'click', function (event) {
             event.preventDefault();
             $(settings.id).remove();
@@ -89,7 +89,7 @@ var MensagemVTT = (function () {
     };
 
     return this;
-}());
+};
 
 
 
