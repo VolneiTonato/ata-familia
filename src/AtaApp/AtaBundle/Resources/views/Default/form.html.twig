@@ -23,13 +23,12 @@
 
                         {{ form_row(form.municipio.sigla) }}
 
-                        {{ form_row(form.telefones.vars.prototype.numero) }}
+                        {% include('AtaAppAtaBundle:extras:telefone.form.twig') %}
 
                         <div class="form-actions">
-                            <button type="submit" onclick="AtaController().save(event,$(this).closest('form').serialize());" id="salvar" class="btn btn-primary">Salvar</button>
+                            <button type="submit" onclick="AtaController().save(event,$(this).closest('form'));" class="btn btn-primary">Salvar</button>
                             <button type="reset" class="btn">Limpar</button>
                         </div>
-
                     </fieldset>
                 </form>
             </div>
@@ -69,5 +68,8 @@
 
 {% block javascriptLocal %}
     {{ parent() }}
-    <script> AtaController().list(); </script>
+    <script> 
+        AtaController().init();
+        TelefoneController().init();
+    </script>
 {% endblock %}

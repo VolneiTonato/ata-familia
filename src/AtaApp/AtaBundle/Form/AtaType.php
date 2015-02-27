@@ -5,6 +5,8 @@ namespace AtaApp\AtaBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class AtaType extends AbstractType
 {
@@ -29,6 +31,8 @@ class AtaType extends AbstractType
             ))
                 
         ;
+        
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event){});
     }
     
     /**
@@ -48,6 +52,6 @@ class AtaType extends AbstractType
      */
     public function getName()
     {
-        return 'ataapp_atabundle_ata';
+        return 'form_ata';
     }
 }

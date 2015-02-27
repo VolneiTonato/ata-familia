@@ -16,8 +16,7 @@ class TelefoneType extends AbstractType
     {
         $builder
             ->add('numero', null, array('label' => 'Número'))
-            ->add('id')
-            //->add('ata')
+            ->add('id', 'hidden')
         ;
     }
     

@@ -1,0 +1,36 @@
+
+<hr />
+
+<div class="control-group">
+    <div class="controls">
+
+        <h2 class="text-success">Telefones</h2>
+
+    </div>
+</div>
+<div id="ID_TELEFONE_BLOCO_PRINCIPAL">
+
+    {{ form_row(form.telefones.vars.prototype.numero, {'attr' : {'class' : 'form-control ID_TELEFONE_INPUT_NUMERO'}}) }}
+
+    {{ form_row(form.telefones.vars.prototype.id, {'attr' : {'class' : 'id-telefone'}}) }}
+
+
+
+    <div class="control-group">
+        <div class="controls">
+            <button class="btn btn-danger ID_TELEFONE_REMOVE" style="display:none">
+                <i class="halflings-icon white remove-sign"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+<div class="control-group">
+    <div class="controls">
+        <button id="ID_TELEFONE_ADD" class="btn btn-success">
+            <i class="halflings-icon white plus-sign"></i>
+        </button>
+    </div>
+</div>

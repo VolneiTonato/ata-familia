@@ -45,8 +45,11 @@ function AjaxVTT() {
         }).fail(function (jqXHR, textStatus, errorThrown) {
             
             MensagemVTT().show({mensagem : textStatus}).close(function(){
-                if(jqXHR.responseText && settings.vttDebug === true)
-                    ModalVTT().show(jqXHR.responseText);
+                if(jqXHR.responseText && settings.vttDebug === true){
+                    ModalVTT().show(errorThrown).close(function(){
+                       ModalVTT().show(jqXHR.responseText).close(); 
+                    });
+                }
             });
             
         }).always(function (data, textStatus, errorThrown) {
