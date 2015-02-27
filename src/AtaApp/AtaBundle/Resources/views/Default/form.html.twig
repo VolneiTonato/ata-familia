@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="box-content">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="formAta">
                     <fieldset>
 
                         {{ form_row(form.nome) }}
@@ -26,7 +26,7 @@
                         {{ form_row(form.telefones.vars.prototype.numero) }}
 
                         <div class="form-actions">
-                            <button type="submit" onclick="AtaController().save($(this).closest('form'));" id="salvar" class="btn btn-primary">Salvar</button>
+                            <button type="submit" onclick="AtaController().save(event,$(this).closest('form').serialize());" id="salvar" class="btn btn-primary">Salvar</button>
                             <button type="reset" class="btn">Limpar</button>
                         </div>
 

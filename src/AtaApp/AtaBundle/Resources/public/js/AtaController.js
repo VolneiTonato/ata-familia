@@ -57,15 +57,15 @@ function AtaController(){
         return this;
     };
     
-    this.save = function(form){
+    this.save = function(e,form){
         
         AjaxVTT().send({
             'vttUrl' : ConfiguracoesVTT().pathRoot() + 'save', 
-            'vttData' : $.extend({}, {}, $(form)),
+            'vttData' : form,
             'vttDebug' : true,
-            'vttDataType' : 'html'
+            'vttEvent' : e
         }, function(html){
-            ModalVTT().show(html);
+            MensagemVTT().show(html).close();
         });
     };
     

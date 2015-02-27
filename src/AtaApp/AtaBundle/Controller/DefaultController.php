@@ -65,18 +65,14 @@ class DefaultController extends BaseController
      */
     public function saveAction(Request $request)
     {
-        var_dump($request->request->all());
-        exit();
         $ata = new \AtaApp\AtaBundle\Entity\Ata();
         $form = $this->createForm(new AtaType(), $ata);
         
         if($request->isMethod('POST')){
-            $form->submit($request);
-            
-            var_dump($ata);
-            exit();
-            
+            $form->submit($request);            
         }
+        
+        return new JsonResponse(array('mensagem' => 'tudo certo', 'ok' => true, 'tipo' => 'success'));
     }
    
     
