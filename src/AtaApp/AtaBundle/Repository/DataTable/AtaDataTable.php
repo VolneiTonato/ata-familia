@@ -21,28 +21,33 @@ class AtaDataTable {
         $dataTable = new \VTT\UtilsBundle\Libraries\DataTable($this->request);       
         $atas = $this->em->getRepository('AtaAppAtaBundle:Ata')->ataPaginacao($dataTable);
         
-        $data = array();
-        /*
-        foreach($atas as $ata){
-            $barras = array();
-            if(count($produto->getCodigoBarras()) > 0){
-                foreach($produto->getCodigoBarras() as $barra){
-                    $barras[] = $barra->getCodigo();
-                }
-            }  
-            $data[] = array(
-                'DT_RowId' => $produto->getId(),
-                'DT_RowData' => array('pkey' => $produto->getId()),
-                'descricao' => $produto->getDescricao(),
-                'codigo_barra' => implode(',', $barras)
-            );
-        }*/
+        //$data = array();
         
-        $data[] = array(
-                'DT_RowId' => 1,
-                'DT_RowData' => array('pkey' => 1),
-                'descricao' => 'volnei',
-        );
+        foreach($atas as $ata){
+            
+            $telefones = array();
+            if(count($ata->getTelefones()) > 0){
+                foreach($ata->getTelefones() as $telefone){
+                    $telefones[] = $telefone->getNumero();
+                }
+            } 
+            
+            $emails = array();
+            if(count($ata->getEmails()) > 0){
+                foreach($ata->getEmails() as $email){
+                    $emails[] = $email->getEmail();
+                }
+            } 
+             
+             
+            $data[] = array(
+                'DT_RowId' => $ata->getId(),
+                'DT_RowData' => array('pkey' => $ata->getId()),
+                'descricao' => $ata->getNome(),
+                'telefones' => implode(',', $telefones),
+                'emails' => implode(',', $emails)
+            );
+        }
         
         return $dataTable->setData($data)->getOutPutJson();
     }

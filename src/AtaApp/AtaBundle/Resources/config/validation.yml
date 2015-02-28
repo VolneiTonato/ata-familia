@@ -1,0 +1,48 @@
+AtaApp\AtaBundle\Entity\Ata:
+    properties:
+        nome:
+            - NotBlank: 
+                message: 'AtaAppAtaBundle.Ata.nome.not_blank'
+            - Length:
+                min: 3
+                max: 100
+                minMessage: 'AtaAppAtaBundle.Ata.nome.min_length'
+                maxMessage: 'AtaAppAtaBundle.Ata.nome.max_length'
+        emails:
+            - Valid : ~
+        telefones:
+            - Valid : ~
+        municipio:
+            - Valid : ~
+
+AtaApp\AtaBundle\Entity\Email:
+    properties:
+        email:
+            #- NotBlank:
+            #    message: 'AtaAppAtaBundle.Email.email.not_blank'
+            - Email:
+                message: 'AtaAppAtaBundle.Email.email.email'
+                
+AtaApp\AtaBundle\Entity\Telefone:
+    properties:
+        numero:
+            - NotBlank:
+                message: 'AtaAppAtaBundle.Telefone.numero.not_blank'
+                
+                
+AtaApp\AtaBundle\Entity\Municipio:
+    properties:
+        nome:
+            - NotBlank:
+                message: 'AtaAppAtaBundle.Municipio.nome.not_blank'
+            - Length:
+                min: 5
+                max: 50
+                exactMessage: 'AtaAppAtaBundle.Municipio.descricao.min_max_length'               
+        sigla:
+            - NotBlank:
+                message: 'AtaAppAtaBundle.Municipio.sigla.not_blank'
+              
+            
+                
+                

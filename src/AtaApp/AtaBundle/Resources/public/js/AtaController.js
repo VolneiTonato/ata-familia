@@ -38,16 +38,27 @@ function AtaController() {
                     'name': 'descricao'
                 },
                 {
-                    'targets': [1],
+                    'targets' : [1],
+                    'data' : 'telefones',
+                    'name' : 'telefones'
+                },
+                {
+                    'targets' : [2],
+                    'data' : 'emails',
+                    'name' : 'emails'
+                },
+                {
+                    'targets': [3],
                     'data': 'template',
                     'name': 'template',
-                    'defaultContent': ''
+                    'defaultContent': '',
+                    'width' : '20%'
                 }
             ],
             "rowCallback": function (row, data) {
                 $.get(ConfiguracoesVTT().baseUrl() + 'bundles/ataappata/js/templates-data-table/cadastro-ata/botoes-action.html', function (html) {
                     html = html.replace(/{{ID_ELEMENT}}/gi, data.DT_RowId);
-                    $('td:eq(1)', row).html(html);
+                    $('td:eq(3)', row).html(html);
                 });
             }
         });
@@ -67,8 +78,9 @@ function AtaController() {
             'vttData': form.serializeArray(),
             'vttDebug': true,
             'vttEvent': e
-        }, function (html) {
-            MensagemVTT().show(html).close();
+        }, function (response) {
+            MensagemVTT().show({mensagem : response.mensagemVTT, tipo : response.tipoVTT}).close();
+            list();
         });
 
     };

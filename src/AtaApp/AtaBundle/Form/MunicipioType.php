@@ -37,6 +37,6 @@ class MunicipioType extends AbstractType
      */
     public function getName()
     {
-        return 'ataapp_atabundle_municipio';
+        return 'form_municipio';
     }
 }

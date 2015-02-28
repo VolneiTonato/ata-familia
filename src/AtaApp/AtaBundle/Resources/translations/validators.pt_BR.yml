@@ -1,0 +1,30 @@
+AtaAppAtaBundle:
+    Ata:
+        nome:
+            not_blank: 'Campo nome obrigatório.'
+            min_length: 'Campo nome deve ter mais de 3 caracteres.'
+            max_length: 'Campo nome pode ter até 100 caracteres.'    
+            
+    Email:
+        email:
+            not_blank: 'Campo email obrigatório.'
+            email: 'Email inválido.'
+            
+    Telefone:
+        numero:
+            not_blank: 'Campo número obrigatório.'
+        tipoTelefone:
+            not_blank: 'Campo tipo telefone obrigatório.'
+            
+    Municipio:
+        nome:
+            not_blank: 'Campo município obrigatório.'
+            min_max_length: 'Campo município precisa de pelo menos 5 e no máximo 50 caracteres.'
+        sigla:
+            not_blank: 'Campo estado obrigatório.'
+            
+            
+            
+            
+            
+            

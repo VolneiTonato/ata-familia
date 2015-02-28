@@ -5,14 +5,14 @@ namespace AtaApp\AtaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Telefone
+ * Email
  */
-class Telefone
+class Email
 {
     /**
      * @var string
      */
-    private $numero;
+    private $email;
 
     /**
      * @var integer
@@ -26,33 +26,33 @@ class Telefone
 
 
     /**
-     * Set numero
+     * Set email
      *
-     * @param string $numero
-     * @return Telefone
+     * @param string $email
+     * @return Email
      */
-    public function setNumero($numero)
+    public function setEmail($email)
     {
-        $this->numero = $numero;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get numero
+     * Get email
      *
      * @return string 
      */
-    public function getNumero()
+    public function getEmail()
     {
-        return $this->numero;
+        return $this->email;
     }
 
     /**
      * Set id
      *
      * @param integer $id
-     * @return Telefone
+     * @return Email
      */
     public function setId($id)
     {
@@ -75,9 +75,9 @@ class Telefone
      * Set ata
      *
      * @param \AtaApp\AtaBundle\Entity\Ata $ata
-     * @return Telefone
+     * @return Email
      */
-    public function setAta(\AtaApp\AtaBundle\Entity\Ata $ata = null)
+    public function setAta(\AtaApp\AtaBundle\Entity\Ata $ata)
     {
         $this->ata = $ata;
 

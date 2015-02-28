@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="AtaApp\AtaBundle\Entity\Ata" table="ata" repository-class="AtaApp\AtaBundle\Repository\AtaRepository">
+    <entity name="AtaApp\AtaBundle\Entity\Ata" table="ata" repository-class="AtaApp\AtaBundle\Repository\AtaRepository">
     
-    <id name="id" type="bigint" column="id">
-      <generator strategy="IDENTITY"/>
-    </id>
-    <field name="nome" type="string" column="nome" length="100" nullable="false"/>
-    <many-to-one field="municipio" target-entity="Municipio">
-      <join-columns>
-        <join-column name="municipio_id" referenced-column-name="id"/>
-      </join-columns>
-    </many-to-one>
+        <id name="id" type="bigint" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="nome" type="string" column="nome" length="100" nullable="false"/>
     
     
-  </entity>
+        <many-to-one field="municipio" target-entity="Municipio">
+            <join-columns>
+                <join-column name="municipio_id" referenced-column-name="id"/>
+            </join-columns>
+        </many-to-one>
+   
+        <one-to-many field="emails" target-entity="Email" mapped-by="ata" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+        
+        <one-to-many field="telefones" target-entity="Telefone" mapped-by="ata" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+    
+    </entity>
 </doctrine-mapping>

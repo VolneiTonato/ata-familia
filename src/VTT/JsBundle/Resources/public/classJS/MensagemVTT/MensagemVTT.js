@@ -68,7 +68,7 @@ function MensagemVTT(){
             
             $.blockUI({
                 message: $(settings.id),
-                css: {backgroundColor: background, color: color}
+                css: {backgroundColor: background, color: color, textAlign : 'left', padding:'10px'}
             });
         });
 

@@ -2,6 +2,7 @@
 
 namespace AtaApp\AtaBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,12 @@ class Ata
      * @var \AtaApp\AtaBundle\Entity\Municipio
      */
     private $municipio;
+    
+     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $emails;
+
 
     /**
      * Constructor
@@ -35,6 +42,7 @@ class Ata
     public function __construct()
     {
         $this->telefones = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->emails = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -125,5 +133,41 @@ class Ata
     public function getMunicipio()
     {
         return $this->municipio;
+    }
+   
+
+    /**
+     * Add emails
+     *
+     * @param \AtaApp\AtaBundle\Entity\Email $emails
+     * @return Ata
+     */
+    public function addEmail(\AtaApp\AtaBundle\Entity\Email $emails)
+    {
+        if(!is_null($emails->getEmail())){
+            $this->emails[] = $emails;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove emails
+     *
+     * @param \AtaApp\AtaBundle\Entity\Email $emails
+     */
+    public function removeEmail(\AtaApp\AtaBundle\Entity\Email $emails)
+    {
+        $this->emails->removeElement($emails);
+    }
+
+    /**
+     * Get emails
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmails()
+    {
+        return $this->emails;
     }
 }

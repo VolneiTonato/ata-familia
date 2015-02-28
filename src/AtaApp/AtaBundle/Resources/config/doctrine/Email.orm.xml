@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="AtaApp\AtaBundle\Entity\Telefone" table="telefones" repository-class="AtaApp\AtaBundle\Repository\TelefoneRepository">
+    <entity name="AtaApp\AtaBundle\Entity\Email" table="emails" repository-class="AtaApp\AtaBundle\Repository\EmailRepository">
     
         <id name="id" type="bigint" column="id">
             <generator strategy="IDENTITY"/>
         </id>
     
-        <field name="numero" type="string" column="numero" length="50" nullable="true"/>
+        <field name="email" type="string" column="email" length="70" nullable="true"/>
     
-    
-        <many-to-one field="ata" target-entity="Ata" inversed-by="telefones">
+        <many-to-one field="ata" target-entity="Ata" inversed-by="emails">
             <join-columns>
                 <join-column name="ata_id" nullable="false" referenced-column-name="id"/>
             </join-columns>

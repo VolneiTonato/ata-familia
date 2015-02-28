@@ -4,8 +4,9 @@ imports:
     - { resource: services.yml }
 
 framework:
+    default_locale: pt_BR
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"

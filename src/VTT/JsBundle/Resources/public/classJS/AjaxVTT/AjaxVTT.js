@@ -46,9 +46,7 @@ function AjaxVTT() {
             
             MensagemVTT().show({mensagem : textStatus}).close(function(){
                 if(jqXHR.responseText && settings.vttDebug === true){
-                    ModalVTT().show(errorThrown).close(function(){
-                       ModalVTT().show(jqXHR.responseText).close(); 
-                    });
+                    ModalVTT().show(jqXHR.responseText).close();
                 }
             });
             
@@ -67,8 +65,8 @@ function AjaxVTT() {
                         break;
                     case 'json':
                     default :
-                        if (!data.ok) {
-                            MensagemVTT().show({mensagem: data.mensagem});
+                        if (!data.statusResponseVTT) {
+                            MensagemVTT().show({mensagem : data.mensagemVTT}).close();
                         } else {
                             fnc(data);
                             fnc = undefined;

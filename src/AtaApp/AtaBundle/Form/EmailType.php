@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class TelefoneType extends AbstractType
+class EmailType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,7 +15,7 @@ class TelefoneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numero', null, array('label' => 'Número'))
+            ->add('email')
             ->add('id', 'hidden')
         ;
     }
@@ -26,7 +26,7 @@ class TelefoneType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AtaApp\AtaBundle\Entity\Telefone',
+            'data_class' => 'AtaApp\AtaBundle\Entity\Email',
             'csrf_protection' => false,
             'cascade_validation' => true,
         ));
@@ -37,6 +37,6 @@ class TelefoneType extends AbstractType
      */
     public function getName()
     {
-        return 'form_telefone';
+        return 'form_email';
     }
 }

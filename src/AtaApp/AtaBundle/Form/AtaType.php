@@ -30,10 +30,29 @@ class AtaType extends AbstractType
                 'options' => array('data_class' => 'AtaApp\AtaBundle\Entity\Telefone'),
             ))
                 
+            ->add('emails', 'collection', array(
+                'type' => new EmailType(),
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'prototype_name' => '0',
+                'options' => array('data_class' => 'AtaApp\AtaBundle\Entity\Email'),
+            ))
+                
         ;
         
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event){});
+        
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event){
+            $data = $event->getData();
+            
+        });
+        
+        
+        $builder->addEventListener(FormEvents::SUBMIT, function(FormEvent $event){
+            $data = $event->getData();
+        });
     }
+    
     
     /**
      * @param OptionsResolverInterface $resolver

@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="box-content">
-                <form class="form-horizontal" id="formAta">
+                <form class="form-horizontal">
                     <fieldset>
 
                         {{ form_row(form.nome) }}
@@ -24,6 +24,8 @@
                         {{ form_row(form.municipio.sigla) }}
 
                         {% include('AtaAppAtaBundle:extras:telefone.form.twig') %}
+                        
+                        {% include('AtaAppAtaBundle:extras:email.form.twig') %}
 
                         <div class="form-actions">
                             <button type="submit" onclick="AtaController().save(event,$(this).closest('form'));" class="btn btn-primary">Salvar</button>
@@ -49,6 +51,8 @@
                     <thead>
                         <tr>
                             <th>Descrição</th>
+                            <th>Telefones</th>
+                            <th>Emails</th>
                             <th></th>
                         </tr>
                     </thead>   
@@ -71,5 +75,6 @@
     <script> 
         AtaController().init();
         TelefoneController().init();
+        EmailController().init();
     </script>
 {% endblock %}

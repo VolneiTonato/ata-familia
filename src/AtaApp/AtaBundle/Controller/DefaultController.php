@@ -10,6 +10,8 @@ use Symfony\Component\DependencyInjection\Container,
     Symfony\Component\HttpFoundation\JsonResponse,
    Symfony\Component\HttpFoundation\Response;
 
+use VTT\UtilsBundle\Libraries\ResponseVTT;
+
 use AtaApp\AtaBundle\Form\AtaType;
 
 /**
@@ -53,6 +55,12 @@ class DefaultController extends BaseController
         
         $form = $this->createForm(new AtaType());
         
+        $atas = $this->repository('AtaAppAtaBundle:Ata')->findAll();
+        
+        dump($atas);
+        
+        
+        
         return $this->_libRenderView->toRenderMerge(array(
             'form' => $form->createView()
         ));
@@ -69,10 +77,20 @@ class DefaultController extends BaseController
         $form = $this->createForm(new AtaType(), $ata);
         
         if($request->isMethod('POST')){
-            $form->submit($request);            
-        }
+            $form->submit($request);
+            
+            
+            $errosList = $this->get('validator')->validate($ata);
         
-        return new JsonResponse(array('mensagem' => 'tudo certo', 'ok' => true, 'tipo' => 'success'));
+            if(!count($errosList) > 0){
+                $this->repository('AtaAppAtaBundle:Ata')->save($ata);
+                
+                return ResponseVTT::json('Ata registrada com sucesso', ResponseVTT::SUCCESS);
+                
+            }else{
+                return ResponseVTT::json(ResponseVTT::errorValidatorSymfony($errosList), ResponseVTT::ERROR, false);
+            }
+        }
     }
    
     

@@ -2,6 +2,7 @@
 
 namespace AtaApp\AtaBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,10 +21,22 @@ class Ata
     private $id;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $telefones;
+
+    /**
      * @var \AtaApp\AtaBundle\Entity\Municipio
      */
     private $municipio;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->telefones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set nome
@@ -59,41 +72,6 @@ class Ata
     }
 
     /**
-     * Set municipio
-     *
-     * @param \AtaApp\AtaBundle\Entity\Municipio $municipio
-     * @return Ata
-     */
-    public function setMunicipio(\AtaApp\AtaBundle\Entity\Municipio $municipio = null)
-    {
-        $this->municipio = $municipio;
-
-        return $this;
-    }
-
-    /**
-     * Get municipio
-     *
-     * @return \AtaApp\AtaBundle\Entity\Municipio 
-     */
-    public function getMunicipio()
-    {
-        return $this->municipio;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $telefones;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->telefones = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Add telefones
      *
      * @param \AtaApp\AtaBundle\Entity\Telefone $telefones
@@ -101,6 +79,7 @@ class Ata
      */
     public function addTelefone(\AtaApp\AtaBundle\Entity\Telefone $telefones)
     {
+        $telefones->setAta($this);
         $this->telefones[] = $telefones;
 
         return $this;
@@ -124,5 +103,28 @@ class Ata
     public function getTelefones()
     {
         return $this->telefones;
+    }
+
+    /**
+     * Set municipio
+     *
+     * @param \AtaApp\AtaBundle\Entity\Municipio $municipio
+     * @return Ata
+     */
+    public function setMunicipio(\AtaApp\AtaBundle\Entity\Municipio $municipio = null)
+    {
+        $this->municipio = $municipio;
+
+        return $this;
+    }
+
+    /**
+     * Get municipio
+     *
+     * @return \AtaApp\AtaBundle\Entity\Municipio 
+     */
+    public function getMunicipio()
+    {
+        return $this->municipio;
     }
 }

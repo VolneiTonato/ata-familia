@@ -4,6 +4,7 @@ namespace AtaApp\AtaBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use VTT\UtilsBundle\Libraries\DataTable;
+use AtaApp\AtaBundle\Entity;
 
 /**
  * AtaRepository
@@ -13,6 +14,23 @@ use VTT\UtilsBundle\Libraries\DataTable;
  */
 class AtaRepository extends EntityRepository
 {
+    
+    public function save(Entity\Ata $ata)
+    {
+        try{
+            $em = $this->_em;
+            
+            $em->persist($ata->getMunicipio());
+            $em->flush();
+            
+            $em->persist($ata);
+            $em->flush();
+            
+        } catch (\Exception $ex) {
+            throw new \Exception($ex);
+        }
+    }
+    
     public function ataPaginacao(DataTable &$dataTable)
     {
         $dq = $this->createQueryBuilder('A');

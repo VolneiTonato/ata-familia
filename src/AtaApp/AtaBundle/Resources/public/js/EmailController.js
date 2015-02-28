@@ -1,14 +1,14 @@
-function TelefoneController(){
+function EmailController(){
     
     var configuracoes = {
-        idBlocoTelefone: '#ID_TELEFONE_BLOCO_PRINCIPAL',
-        idBlocoTelefoneList : ".ID_TELEFONE_BLOCO_LIST",
-        idTelefoneInputNumero : ".ID_TELEFONE_INPUT_NUMERO",
-        idTelefoneInputId : ".ID_TELEFONE_INPUT_ID",
+        idBlocoPrincipal: '#ID_EMAIL_BLOCO_PRINCIPAL',
+        idBlocoPrincipalClone : ".ID_EMAIL_BLOCO_LIST",
+        idInputEmail : ".ID_EMAIL_INPUT_EMAIL",
+        idInputId : ".ID_EMAIL_INPUT_ID",
         nameForm : 'form_ata',
         botoes : {
-            idBtnAdd : "#ID_TELEFONE_ADD",
-            idBtnRemove : ".ID_TELEFONE_REMOVE"
+            idBtnAdd : "#ID_EMAIL_ADD",
+            idBtnRemove : ".ID_EMAIL_REMOVE"
         }
     };
     
@@ -31,15 +31,15 @@ function TelefoneController(){
             
             e.preventDefault();
             
-            var totalElement = $(settings.idTelefoneInputNumero).size();
+            var totalElement = $(settings.idInputEmail).size();
 
-            var $o = $(settings.idBlocoTelefone).clone();
-            $o.attr('id', "").addClass(settings.idBlocoTelefoneList.replace(/^\./, ''));
+            var $o = $(settings.idBlocoPrincipal).clone();
+            $o.attr('id', "").addClass(settings.idBlocoPrincipalClone.replace(/^\./, ''));
             $o.find(settings.botoes.idBtnRemove).css('display','block');
-            var novoNomeInput = settings.nameForm + '[telefones][' + parseInt(totalElement) + '][numero]';
-            var nomeId = settings.nameForm + '[telefones][' + parseInt(totalElement) + '][id]';
+            var novoEmailInput = settings.nameForm + '[emails][' + parseInt(totalElement) + '][email]';
+            var nomeId = settings.nameForm + '[emails][' + parseInt(totalElement) + '][id]';
 
-            $o.find(settings.idTelefoneInputNumero).attr('name', novoNomeInput).val('');
+            $o.find(settings.idTelefoneInputNumero).attr('name', novoEmailInput).val('');
             $o.find(settings.idTelefoneInputId).attr('name', nomeId).val('');
 
             $(this).closest('div').before($o);
@@ -47,7 +47,7 @@ function TelefoneController(){
 
         $("body").on('click', settings.botoes.idBtnRemove, function(e) {
             e.preventDefault();
-            $(this).closest(settings.idBlocoTelefoneList).remove();
+            $(this).closest(settings.idBlocoPrincipalClone).remove();
         });
         
         
