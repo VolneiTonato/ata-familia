@@ -1,52 +1,77 @@
-function MunicipioController(){
-    
+function MunicipioController() {
+
     var $body = $('body');
-    
+
     var autocompleteObj = {
-      nome : "[vtt_model=ID_MUNICIPIO_NOME]",
-      sigla : '#ID_MUNICIPIO_SIGLA'
+        nome: "[vtt-model=ID_MUNICIPIO_NOME]",
+        sigla: '[vtt-model="ID_MUNICIPIO_SIGLA"]',
+        id: '[vtt-model="ID_MUNICIPIO_ID"]',
+        blocoAutocompletar: 'autocomplete-municipio'
     };
-    
-    
-    this.autoCompletarMunicipio = function(){
+
+
+    this.resetForm = function () {
+        $(autocompleteObj.nome).val('');
+        $(autocompleteObj.sigla).val('');
+        $(autocompleteObj.id).val('');
+        $(autocompleteObj.blocoAutocompletar).html('');
+    };
+
+
+
+    this.autoCompletarMunicipio = function () {
         var obj = $(autocompleteObj.nome);
-        if(obj.val().length >= 2){
+        if (obj.val().length >= 2) {
             AjaxVTT().send({
-                'vttUrl' : ConfiguracoesVTT().baseUrl() + 'pesquisar-municipio',
-                'vttData' : {'nome' : obj.val()},
-                'vttLoader' : false,
-                'vttDebug' : true
-            }, function(result){
-                console.log(result);
+                'vttUrl': ConfiguracoesVTT().baseUrl() + 'pesquisar-municipio',
+                'vttData': {'nome': obj.val()},
+                'vttLoader': false,
+                'vttDebug': true,
+                'vttDataType': 'html'
+            }, function (result) {
+                $(autocompleteObj.blocoAutocompletar).html(result);
             });
+        } else {
+            $(autocompleteObj.blocoAutocompletar).html('');
         }
     };
-    
-    var regEvents = function(){
-        
+
+    this.selecionarMunicipioAutoComplete = function (e, tr) {
+
+        e.preventDefault();
+        $(autocompleteObj.id).val($(tr).find('td').eq(0).text());
+        $(autocompleteObj.nome).val($(tr).find('td').eq(1).text());
+        $(autocompleteObj.sigla).val($(tr).find('td').eq(2).text());
+
+        $(autocompleteObj.blocoAutocompletar).html('');
+
+    };
+
+
+    var regEvents = function () {
+
         $(autocompleteObj.nome).on({
             /*
-            click : function(){
+             click : function(){
+             autoCompletarMunicipio();
+             /*
+             blur : function(){
+             autoCompletarMunicipio();
+             */
+            change: function () {
                 autoCompletarMunicipio();
             },
-            blur : function(){
-                autoCompletarMunicipio();
-            },
-            change : function(){
-                autoCompletarMunicipio();
-            },
-            */
-            keyup : function(){                
+            keyup: function () {
                 autoCompletarMunicipio();
             }
         });
     };
-    
-    this.init = function(options){
-      
+
+    this.init = function (options) {
+
         regEvents();
     };
-    
+
     return this;
-    
+
 }

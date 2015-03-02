@@ -20,12 +20,13 @@ class AtaRepository extends EntityRepository
         try{
             $em = $this->_em;
             
-            $em->persist($ata->getMunicipio());
-            $em->flush();
+            $municipio = $em->getRepository('AtaAppAtaBundle:Municipio')->save($ata->getMunicipio());
+            
+            $ata->setMunicipio($municipio);
             
             $em->persist($ata);
             $em->flush();
-            
+
         } catch (\Exception $ex) {
             throw new \Exception($ex);
         }
@@ -33,39 +34,53 @@ class AtaRepository extends EntityRepository
     
     public function ataPaginacao(DataTable &$dataTable)
     {
-        $dq = $this->createQueryBuilder('A');
+        $dq = $this->createQueryBuilder('Ata');
+        $dq->join('Ata.telefones', 'Telefone');
+        $dq->join('Ata.municipio', 'Municipio');
         
         
         if($dataTable->isLimitOffSetQuery()){
             $dq->setFirstResult($dataTable->getPaginaAtual())
                 ->setMaxResults($dataTable->getQuantidadeItemPagina());
         }
-        /*
+        
         if(strlen($dataTable->getSearch()) > 0){        
             foreach($dataTable->getColumns() as $colunasDt){
                 $fieldColumn = $colunasDt['name'];
                 if($fieldColumn === 'descricao'){
-                    $dq->orWhere($dq->expr()->like('upper(P.descricao)', ":{$fieldColumn}"))
-                        ->setParameter($fieldColumn, sprintf('%%%s%%', \Util\HelpersBundle\Helpers\StringsHelper::toUpperCase($dataTable->getSearch())));
-                }elseif($fieldColumn === 'codigo_barra'){
-                    $dq->orWhere($dq->expr()->like('C.codigo', ":{$fieldColumn}"))
-                        ->setParameter($fieldColumn, sprintf('%s%%', $dataTable->getSearch()));
+                    $dq->orWhere($dq->expr()->like('Ata.nome', ":{$fieldColumn}"))
+                        ->setParameter($fieldColumn, sprintf('%%%s%%', $dataTable->getSearch()));
+                }elseif($fieldColumn === 'telefones'){
+                    $dq->orWhere($dq->expr()->in('Telefone.numero', ":{$fieldColumn}"))
+                       ->setParameter($fieldColumn, (array)  explode(',' , $dataTable->getSearch()));
+                }elseif ($fieldColumn === 'municipio') {
+                    $dq->orWhere($dq->expr()->like('Municipio.nome', ":{$fieldColumn}"))
+                       ->setParameter($fieldColumn,  sprintf('%%%s%%', $dataTable->getSearch()));
+                }elseif ($fieldColumn === 'estado') {
+                    $dq->orWhere($dq->expr()->eq('Municipio.sigla', ":estado"))
+                       ->setParameter('estado', $dataTable->getSearch());
                 }
             }
         }
         
         switch ($dataTable->getColumnNameOrderBy()){
             case 'descricao':
-                $columnOrder = 'P.descricao';
+                $columnOrder = 'Ata.nome';
                 break;
-            case 'codigo_barra':
-                $columnOrder = 'C.codigo';
+            case 'telefones':
+                $columnOrder = 'Telefone.numero';
+                break;
+            case 'municipio':
+                $columnOrder = 'Municipio.nome';
+                break;
+            case 'estado':
+                $columnOrder = 'Municipio.sigla';
                 break;
         }
         
         if(isset($columnOrder)){
             $dq->orderBy($columnOrder, $dataTable->getTypeOrderBy());
-        }     */
+        }     
 
         $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($dq, true);
         

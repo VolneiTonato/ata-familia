@@ -48,7 +48,17 @@ function AtaController() {
                     'name' : 'emails'
                 },
                 {
-                    'targets': [3],
+                    'targets' : [3],
+                    'data' : 'municipio',
+                    'name' : 'municipio'
+                },
+                {
+                    'targets' : [4],
+                    'data' : 'estado',
+                    'name' : 'estado'
+                },
+                {
+                    'targets': [5],
                     'data': 'template',
                     'name': 'template',
                     'defaultContent': '',
@@ -58,7 +68,7 @@ function AtaController() {
             "rowCallback": function (row, data) {
                 $.get(ConfiguracoesVTT().baseUrl() + 'bundles/ataappata/js/templates-data-table/cadastro-ata/botoes-action.html', function (html) {
                     html = html.replace(/{{ID_ELEMENT}}/gi, data.DT_RowId);
-                    $('td:eq(3)', row).html(html);
+                    $('td:eq(5)', row).html(html);
                 });
             }
         });
@@ -78,15 +88,26 @@ function AtaController() {
             'vttData': form.serializeArray(),
             'vttDebug': true,
             'vttEvent': e
-        }, function (response) {
-            MensagemVTT().show({mensagem : response.mensagemVTT, tipo : response.tipoVTT}).close();
-            list();
+        }, function (r) {
+            if(r.statusResponseVTT){
+                MensagemVTT().show({mensagem : r.mensagemVTT, tipo : r.tipoVTT}).close();
+                form[0].reset();
+                MunicipioController().resetForm();
+                list();
+            }
         });
 
+    };
+    
+    var dependecyInjection = function(){
+        TelefoneController().init();
+        EmailController().init();
+        MunicipioController().init();
     };
 
 
     this.init = function () {
+        dependecyInjection();
         list();
         regEvents();
     };

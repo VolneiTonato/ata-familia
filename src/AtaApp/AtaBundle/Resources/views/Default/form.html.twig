@@ -19,18 +19,14 @@
 
                         {{ form_row(form.nome) }}
 
-                        {{ form_row(form.municipio.nome, {'attr' : {'vtt_model' : 'ID_MUNICIPIO_NOME'}}) }}
-                        
-                        <autocomplete-municipio></autocomplete-municipio>
-
-                        {{ form_row(form.municipio.sigla) }}
-
+                        {% include('AtaAppAtaBundle:extras:municipio.form.twig') %}
+                       
                         {% include('AtaAppAtaBundle:extras:telefone.form.twig') %}
-                        
+
                         {% include('AtaAppAtaBundle:extras:email.form.twig') %}
 
                         <div class="form-actions">
-                            <button type="submit" onclick="AtaController().save(event,$(this).closest('form'));" class="btn btn-primary">Salvar</button>
+                            <button type="submit" onclick="AtaController().save(event, $(this).closest('form'));" class="btn btn-primary">Salvar</button>
                             <button type="reset" class="btn">Limpar</button>
                         </div>
                     </fieldset>
@@ -55,6 +51,8 @@
                             <th>Descrição</th>
                             <th>Telefones</th>
                             <th>Emails</th>
+                            <th>Município</th>
+                            <th>Estado</th>
                             <th></th>
                         </tr>
                     </thead>   
@@ -74,10 +72,7 @@
 
 {% block javascriptLocal %}
     {{ parent() }}
-    <script> 
+    <script>
         AtaController().init();
-        TelefoneController().init();
-        EmailController().init();
-        MunicipioController().init();
     </script>
 {% endblock %}

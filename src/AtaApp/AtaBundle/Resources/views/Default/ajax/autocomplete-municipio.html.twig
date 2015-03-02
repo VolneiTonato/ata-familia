@@ -1,0 +1,35 @@
+<div class="box span6">
+    <div class="box-header">
+        <h2><i class="halflings-icon white align-justify"></i><span class="break"></span>Municípios</h2>
+    </div>
+    <div class="box-content">
+        {% if municipios is defined and municipios|length > 0 %}
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th style="display: none;"></th>
+                        <th>Município</th>
+                        <th>Estado</th>
+                        <th></th>
+                    </tr>
+                </thead>   
+                <tbody>
+                    <tr>
+                        {% for municipio in municipios %}
+                            <td style="display: none;">{{ municipio.id }}</td>
+                            <td>{{ municipio.nome }}</td>
+                            <td class="center">{{ municipio.sigla }}</td>
+                            <td class="center">
+                                <button class="btn btn-primary" onclick="MunicipioController().selecionarMunicipioAutoComplete(event, $(this).closest('tr'));">Selecionar</button>
+                            </td>                         
+                        {% endfor %}
+                    </tr>  
+                </tbody>
+            </table>
+        {% else %}
+            <h3 class="alert alert-info">Nenhum município cadastrado com esta descrição!</h3>
+        {% endif %}
+    </div>
+</div><!--/span-->
+
+</div><!--/row-->

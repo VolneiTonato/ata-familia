@@ -17,6 +17,7 @@ class MunicipioType extends AbstractType
         $builder
             ->add('nome', null, array('label' => 'Município'))
             ->add('sigla', null, array('label' => 'Estado'))
+            ->add('id', 'hidden')
         ;
     }
     

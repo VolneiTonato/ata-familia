@@ -3,6 +3,7 @@ namespace AtaApp\AtaBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use AtaApp\AtaBundle\FormPesquisa\MunicipioPesq;
+use AtaApp\AtaBundle\Entity;
 
 class MunicipioRepository extends EntityRepository {
     
@@ -13,6 +14,22 @@ class MunicipioRepository extends EntityRepository {
         $this->toArray = (bool) $vData;
         
         return $this;
+    }
+    
+    
+    public function save(Entity\Municipio $o)
+    {
+        $em = $this->_em;
+        
+        if ($o->getId())
+            $em->merge($o);
+        else
+            $em->persist($o);
+
+
+        $em->flush();
+        
+        return $em->getRepository('AtaAppAtaBundle:Municipio')->find($o->getId());
     }
 
     public function pesquisar(MunicipioPesq $o)

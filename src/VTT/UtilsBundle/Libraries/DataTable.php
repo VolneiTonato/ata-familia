@@ -115,7 +115,7 @@ class DataTable {
     
     public function setData($dados = array())
     {
-        $this->outPut[self::_DATA] = $dados;
+        $this->outPut[self::_DATA] = (array) $dados;
         
         return $this;
     }

@@ -132,16 +132,20 @@ class DefaultController extends BaseController
     /**
      * @Route("/pesquisar-municipio", name="ata_pesquisar_municipio")
      * @Method({"POST"})
+     * @Template("AtaAppAtaBundle:Default:ajax/autocomplete-municipio.html.twig")
      */
     public function pesquisarMunicipioAction(Request $request)
     {
+        
         $txtPesq = $request->get('nome');
 
         $municipios = $this->repository('AtaAppAtaBundle:Municipio')->setToArray(true)->pesquisar(
            (new FormPesquisa\MunicipioPesq())->setNome($txtPesq)
         );
         
-        return ResponseVTT::json(null, ResponseVTT::SUCCESS, true, array('municipios' => $municipios));
+        return array('municipios' => $municipios);
+        
+        //return ResponseVTT::json(null, ResponseVTT::SUCCESS, true, array('municipios' => $municipios));
     }
 
 }
