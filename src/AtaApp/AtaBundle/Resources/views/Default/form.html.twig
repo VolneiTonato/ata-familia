@@ -19,7 +19,9 @@
 
                         {{ form_row(form.nome) }}
 
-                        {{ form_row(form.municipio.nome) }}
+                        {{ form_row(form.municipio.nome, {'attr' : {'vtt_model' : 'ID_MUNICIPIO_NOME'}}) }}
+                        
+                        <autocomplete-municipio></autocomplete-municipio>
 
                         {{ form_row(form.municipio.sigla) }}
 
@@ -76,5 +78,6 @@
         AtaController().init();
         TelefoneController().init();
         EmailController().init();
+        MunicipioController().init();
     </script>
 {% endblock %}

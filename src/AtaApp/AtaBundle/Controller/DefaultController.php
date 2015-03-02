@@ -10,8 +10,8 @@ use Symfony\Component\DependencyInjection\Container,
     Symfony\Component\HttpFoundation\JsonResponse,
    Symfony\Component\HttpFoundation\Response;
 
+use AtaApp\AtaBundle\FormPesquisa;
 use VTT\UtilsBundle\Libraries\ResponseVTT;
-
 use AtaApp\AtaBundle\Form\AtaType;
 
 /**
@@ -127,6 +127,21 @@ class DefaultController extends BaseController
         exit();
         
         
+    }
+    
+    /**
+     * @Route("/pesquisar-municipio", name="ata_pesquisar_municipio")
+     * @Method({"POST"})
+     */
+    public function pesquisarMunicipioAction(Request $request)
+    {
+        $txtPesq = $request->get('nome');
+
+        $municipios = $this->repository('AtaAppAtaBundle:Municipio')->setToArray(true)->pesquisar(
+           (new FormPesquisa\MunicipioPesq())->setNome($txtPesq)
+        );
+        
+        return ResponseVTT::json(null, ResponseVTT::SUCCESS, true, array('municipios' => $municipios));
     }
 
 }
