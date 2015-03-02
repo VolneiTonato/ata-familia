@@ -1,7 +1,7 @@
 <?php
 
 
-namespace VTT\UtilsBundle\Libraries;
+namespace VTT\Templates;
 
 interface InterfaceRenderView {
     

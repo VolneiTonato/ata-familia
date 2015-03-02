@@ -2,8 +2,8 @@
 
 namespace VTT\Templates\JanuxBundle\Libraries;
 
-use VTT\UtilsBundle\Libraries\BreadsCrumb,
-    VTT\UtilsBundle\Libraries\InterfaceRenderView;
+use VTT\UtilsBundle\Libraries\BreadsCrumb\BreadsCrumb,
+    VTT\Templates\InterfaceRenderView;
 
 class RenderView implements InterfaceRenderView {
     

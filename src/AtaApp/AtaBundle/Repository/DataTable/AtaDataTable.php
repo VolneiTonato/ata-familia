@@ -18,10 +18,8 @@ class AtaDataTable {
     
     public function getAtas()
     {
-        $dataTable = new \VTT\UtilsBundle\Libraries\DataTable($this->request);       
+        $dataTable = new \VTT\UtilsBundle\Libraries\DataTableJs\DataTable($this->request);       
         $atas = $this->em->getRepository('AtaAppAtaBundle:Ata')->ataPaginacao($dataTable);
-        
-        //$data = array();
         
         foreach($atas as $ata){
             

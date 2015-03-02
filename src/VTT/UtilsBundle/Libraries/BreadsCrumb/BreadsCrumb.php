@@ -1,6 +1,6 @@
 <?php
 
-namespace VTT\UtilsBundle\Libraries;
+namespace VTT\UtilsBundle\Libraries\BreadsCrumb;
 
 class BreadsCrumb {
 

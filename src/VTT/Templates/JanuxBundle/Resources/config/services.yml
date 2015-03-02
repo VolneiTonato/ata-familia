@@ -1,0 +1,3 @@
+services:
+    vtt.render_view_janux:
+        class: VTT\Templates\JanuxBundle\Libraries\RenderView

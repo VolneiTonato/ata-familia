@@ -28,7 +28,11 @@ AtaApp\AtaBundle\Entity\Telefone:
         numero:
             - NotBlank:
                 message: 'AtaAppAtaBundle.Telefone.numero.not_blank'
-                
+            - Length:
+                min: 5
+                max : 15
+                minMessage : 'AtaAppAtaBundle.Telefone.numero.min_length'
+                maxMessage : 'AtaAppAtaBundle.Telefone.numero.max_length'
                 
 AtaApp\AtaBundle\Entity\Municipio:
     properties:

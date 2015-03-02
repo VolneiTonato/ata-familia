@@ -3,7 +3,7 @@
 namespace AtaApp\AtaBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use VTT\UtilsBundle\Libraries\DataTable;
+use VTT\UtilsBundle\Libraries\DataTableJs\DataTable;
 use AtaApp\AtaBundle\Entity;
 
 /**

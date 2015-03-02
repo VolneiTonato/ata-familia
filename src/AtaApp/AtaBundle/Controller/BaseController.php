@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Container;
 
 class BaseController extends BaseControllerVTT {  
     
-    use \VTT\UtilsBundle\Libraries\traitControllerTemplateVTT;  
+    use \VTT\Templates\traitVariaveisControllerTemplateVTT;  
 
     public function __init(Container $container, Request $request) {    
         $this->_libRenderView = $container->get('vtt.render_view_janux');

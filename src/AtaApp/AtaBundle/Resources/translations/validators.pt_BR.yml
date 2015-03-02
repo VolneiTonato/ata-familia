@@ -13,8 +13,8 @@ AtaAppAtaBundle:
     Telefone:
         numero:
             not_blank: 'Campo número obrigatório.'
-        tipoTelefone:
-            not_blank: 'Campo tipo telefone obrigatório.'
+            min_length: 'Campo numero deve ter mais de 5 caracteres.'
+            max_length: 'Campo numero pode ter até 15 caracteres.'    
             
     Municipio:
         nome:

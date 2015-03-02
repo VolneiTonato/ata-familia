@@ -1,6 +1,6 @@
 <?php
 
-namespace VTT\UtilsBundle\Libraries;
+namespace VTT\UtilsBundle\Libraries\DataTableJs;
 
 use Symfony\Component\HttpFoundation\Request;
 

@@ -1,5 +1,7 @@
 function TelefoneController(){
     
+    var $body = $('body');
+    
     var configuracoes = {
         idBlocoTelefone: '#ID_TELEFONE_BLOCO_PRINCIPAL',
         idBlocoTelefoneList : ".ID_TELEFONE_BLOCO_LIST",
@@ -27,7 +29,7 @@ function TelefoneController(){
     
     var regEvents = function(){
         
-        $('body').on('click', settings.botoes.idBtnAdd, function(e) {
+        $body.on('click', settings.botoes.idBtnAdd, function(e) {
             
             e.preventDefault();
             
@@ -45,10 +47,16 @@ function TelefoneController(){
             $(this).closest('div').before($o);
         });
 
-        $("body").on('click', settings.botoes.idBtnRemove, function(e) {
+        $body.on('click', settings.botoes.idBtnRemove, function(e) {
             e.preventDefault();
             $(this).closest(settings.idBlocoTelefoneList).remove();
         });
+        
+        $body.on({
+            change : function(){
+                UtilsVTT().maskFone($(this), true);
+            }
+        }, settings.idTelefoneInputNumero);
         
         
     };

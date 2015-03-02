@@ -1620,6 +1620,10 @@ fieldset[disabled] .btn {
   margin-top: 5px;
 }
 
+input[type="text"],
+input[type="email"]
+{ border: 1px solid #999999 !important; }
+
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {

@@ -4,6 +4,7 @@ function DataTableVTT(elementConstrutor) {
     var elementDefault = '.data-table';
 
 
+
     if (elementConstrutor !== undefined) {
         run(elementDefault);
     }
@@ -37,8 +38,9 @@ function DataTableVTT(elementConstrutor) {
 
     var defaultsParam = function () {
         return {
+            "layoutVTT": 'sdomFull.json',
             "destroy": true,
-            //"pagingType": "bootstrap",
+            "pagingType": "bootstrap",
             "oLanguage": {
                 "sEmptyTable": "Nenhum registro encontrado",
                 "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -95,18 +97,43 @@ function DataTableVTT(elementConstrutor) {
         }
 
 
-        element = elementParam;
-        oTable = $(element).DataTable(settings);
+        if (settings.sDom === undefined) {
+            if (!settings.layoutVTT.match(/\//)) {
+                settings.layoutVTT = ConfiguracoesVTT().pathRoot() + 'bundles/vttjs/classJS/DataTableVTT/templates/' + settings.layoutVTT;
+            }
 
-        // initialzie select2 dropdown
-        $('#sample_1_column_toggler input[type="checkbox"]').change(function () {
-            /* Get the DataTables object again - this is not a recreation, just a get of the object */
-            var iCol = parseInt($(this).attr("data-column"));
-            var bVis = oTable.columns[iCol].visible();
-            //var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
-            oTable.columns.visible(iCol, (bVis ? false : true));
-            //this.oTable.fnSetColumnVis(iCol, (bVis ? false : true));
-        });
+            $.get(settings.layoutVTT, function (js) {
+                $.extend(true, $.fn.dataTable.defaults, js);
+
+                element = elementParam;
+                oTable = $(element).DataTable(settings);
+
+                // initialzie select2 dropdown
+                $('#sample_1_column_toggler input[type="checkbox"]').change(function () {
+                    /* Get the DataTables object again - this is not a recreation, just a get of the object */
+                    var iCol = parseInt($(this).attr("data-column"));
+                    var bVis = oTable.columns[iCol].visible();
+                    //var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                    oTable.columns.visible(iCol, (bVis ? false : true));
+                    //this.oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+                });
+            });
+        } else {
+
+            element = elementParam;
+            oTable = $(element).DataTable(settings);
+
+            // initialzie select2 dropdown
+            $('#sample_1_column_toggler input[type="checkbox"]').change(function () {
+                /* Get the DataTables object again - this is not a recreation, just a get of the object */
+                var iCol = parseInt($(this).attr("data-column"));
+                var bVis = oTable.columns[iCol].visible();
+                //var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                oTable.columns.visible(iCol, (bVis ? false : true));
+                //this.oTable.fnSetColumnVis(iCol, (bVis ? false : true));
+            });
+
+        }
 
         return this;
     };

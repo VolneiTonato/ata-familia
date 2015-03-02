@@ -8,6 +8,8 @@ function MunicipioController() {
         id: '[vtt-model="ID_MUNICIPIO_ID"]',
         blocoAutocompletar: 'autocomplete-municipio'
     };
+    
+    var idDataTable = "#auto-complete-municipio";
 
 
     this.resetForm = function () {
@@ -30,6 +32,11 @@ function MunicipioController() {
                 'vttDataType': 'html'
             }, function (result) {
                 $(autocompleteObj.blocoAutocompletar).html(result);
+                
+                var oTable = DataTableVTT().run(idDataTable, {
+                   layoutVTT : 'sdomCustom.json' 
+                });
+                
             });
         } else {
             $(autocompleteObj.blocoAutocompletar).html('');
@@ -58,9 +65,10 @@ function MunicipioController() {
              blur : function(){
              autoCompletarMunicipio();
              */
+            /*
             change: function () {
                 autoCompletarMunicipio();
-            },
+            },*/
             keyup: function () {
                 autoCompletarMunicipio();
             }

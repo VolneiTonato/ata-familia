@@ -1,6 +1,6 @@
 <?php
 
-namespace VTT\UtilsBundle\Libraries;
+namespace VTT\UtilsBundle\Libraries\ResponseController;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;

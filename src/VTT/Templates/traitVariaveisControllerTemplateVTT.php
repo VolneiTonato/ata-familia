@@ -1,8 +1,8 @@
 <?php
 
-namespace VTT\UtilsBundle\Libraries;
+namespace VTT\Templates;
 
-trait traitControllerTemplateVTT {
+trait traitVariaveisControllerTemplateVTT {
     
     /**
      *

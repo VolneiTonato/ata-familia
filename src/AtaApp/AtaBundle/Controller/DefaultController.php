@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Container,
    Symfony\Component\HttpFoundation\Response;
 
 use AtaApp\AtaBundle\FormPesquisa;
-use VTT\UtilsBundle\Libraries\ResponseVTT;
+use VTT\UtilsBundle\Libraries\ResponseController\ResponseVTT;
 use AtaApp\AtaBundle\Form\AtaType;
 
 /**
@@ -145,7 +145,6 @@ class DefaultController extends BaseController
         
         return array('municipios' => $municipios);
         
-        //return ResponseVTT::json(null, ResponseVTT::SUCCESS, true, array('municipios' => $municipios));
     }
 
 }

@@ -1993,7 +1993,7 @@ function growlLikeNotifications() {
 /* Set the defaults for DataTables initialisation */
 $.extend(true, $.fn.dataTable.defaults, {
     //"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span6 center'p>>",
-    "sDom": "<'row-fluid'<'pull-right'f><'pull-left'l>r<'clearfix'>>t<'row-fluid'<'pull-left'i><'pull-right'p><'clearfix'>>",
+    //"sDom": "<'row-fluid'<'pull-right'f><'pull-left'l>r<'clearfix'>>t<'row-fluid'<'pull-left'i><'pull-right'p><'clearfix'>>",
     "sPaginationType": "bootstrap",
     "oLanguage": {
         "sLengthMenu": "_MENU_ records per page"
