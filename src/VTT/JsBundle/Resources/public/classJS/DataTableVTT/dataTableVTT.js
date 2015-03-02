@@ -38,7 +38,6 @@ function DataTableVTT(elementConstrutor) {
 
     var defaultsParam = function () {
         return {
-            "layoutVTT": 'sdomFull.json',
             "destroy": true,
             "pagingType": "bootstrap",
             "oLanguage": {
@@ -74,7 +73,7 @@ function DataTableVTT(elementConstrutor) {
                 [10, 20, 50]
             ],
             // set the initial value
-            "length": 10,
+            "length": 10
         };
     };
 
@@ -96,44 +95,8 @@ function DataTableVTT(elementConstrutor) {
             elementParam = elementDefault;
         }
 
-
-        if (settings.sDom === undefined) {
-            if (!settings.layoutVTT.match(/\//)) {
-                settings.layoutVTT = ConfiguracoesVTT().pathRoot() + 'bundles/vttjs/classJS/DataTableVTT/templates/' + settings.layoutVTT;
-            }
-
-            $.get(settings.layoutVTT, function (js) {
-                $.extend(true, $.fn.dataTable.defaults, js);
-
-                element = elementParam;
-                oTable = $(element).DataTable(settings);
-
-                // initialzie select2 dropdown
-                $('#sample_1_column_toggler input[type="checkbox"]').change(function () {
-                    /* Get the DataTables object again - this is not a recreation, just a get of the object */
-                    var iCol = parseInt($(this).attr("data-column"));
-                    var bVis = oTable.columns[iCol].visible();
-                    //var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
-                    oTable.columns.visible(iCol, (bVis ? false : true));
-                    //this.oTable.fnSetColumnVis(iCol, (bVis ? false : true));
-                });
-            });
-        } else {
-
-            element = elementParam;
-            oTable = $(element).DataTable(settings);
-
-            // initialzie select2 dropdown
-            $('#sample_1_column_toggler input[type="checkbox"]').change(function () {
-                /* Get the DataTables object again - this is not a recreation, just a get of the object */
-                var iCol = parseInt($(this).attr("data-column"));
-                var bVis = oTable.columns[iCol].visible();
-                //var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
-                oTable.columns.visible(iCol, (bVis ? false : true));
-                //this.oTable.fnSetColumnVis(iCol, (bVis ? false : true));
-            });
-
-        }
+        element = elementParam;
+        oTable = $(element).DataTable(settings);       
 
         return this;
     };

@@ -32,11 +32,7 @@ function MunicipioController() {
                 'vttDataType': 'html'
             }, function (result) {
                 $(autocompleteObj.blocoAutocompletar).html(result);
-                
-                var oTable = DataTableVTT().run(idDataTable, {
-                   layoutVTT : 'sdomCustom.json' 
-                });
-                
+                DataTableVTT().run(idDataTable).registrarEventos();
             });
         } else {
             $(autocompleteObj.blocoAutocompletar).html('');
@@ -58,17 +54,7 @@ function MunicipioController() {
     var regEvents = function () {
 
         $(autocompleteObj.nome).on({
-            /*
-             click : function(){
-             autoCompletarMunicipio();
-             /*
-             blur : function(){
-             autoCompletarMunicipio();
-             */
-            /*
-            change: function () {
-                autoCompletarMunicipio();
-            },*/
+
             keyup: function () {
                 autoCompletarMunicipio();
             }
