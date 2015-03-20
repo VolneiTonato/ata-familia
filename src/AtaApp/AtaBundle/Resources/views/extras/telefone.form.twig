@@ -34,3 +34,13 @@
         </button>
     </div>
 </div>
+
+
+<script>
+    {% if telefones is defined and telefones|length > 0 %}
+        {% for telefone in telefones %}
+            TelefoneController.addTelefone('{{ telefone.id }}', '{{ telefone.numero }}');
+        {% endfor %}
+            TelefoneController.loadTelefones();
+    {% endif %}
+</script>

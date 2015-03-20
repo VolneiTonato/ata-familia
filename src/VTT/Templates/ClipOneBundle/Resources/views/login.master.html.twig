@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR" ng-app="fidelizaSimAdm">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ PageTitle }}</title>
+        <!-- start: META -->
+        <meta charset="utf-8" />
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <!-- end: META -->
+        {% block styles %}
+            {% include 'VTTTemplatesClipOneBundle:extras:template.master/css.twig' %}
+        {% endblock %}
+
+    {% block fiveIcon %}{% endblock %}
+
+</head>
+<body class="login example2">
+
+    <div class="main-login col-sm-4 col-sm-offset-4">
+        <div class="logo">{{ PageNameLogo }}
+        </div>
+        <!-- start: LOGIN BOX -->
+        <div class="box-login">
+
+            {% block body %} {% endblock %}
+
+        </div>
+        <!-- end: LOGIN BOX -->
+
+        <!-- start: COPYRIGHT -->
+        <div class="copyright">
+        {% block footer %}{% endblock %}
+    </div>
+    <!-- end: COPYRIGHT -->
+</div>
+
+{% block javascript %}
+    {% include 'VTTTemplatesClipOneBundle:extras:template.master/js.twig' %}
+{% endblock %}
+
+{% block javascriptVTT %}
+    <script src="{{ asset('js/bower/blockui/jquery.blockUI.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/Configuracoes.vtt.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/AjaxVTT/AjaxVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/DataTableVTT/DataTableVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/LoaderVTT/LoaderVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/MensagemVTT/MensagemVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/ModalVTT/ModalVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/QuestionVTT/QuestionVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/UtilsVTT/UtilsVTT.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block javascriptLocal %}
+
+{% endblock %}
+
+</body>
+</html>

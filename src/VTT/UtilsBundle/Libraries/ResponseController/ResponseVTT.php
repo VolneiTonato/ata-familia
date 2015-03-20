@@ -11,7 +11,7 @@ class ResponseVTT {
     const SUCCESS = "success";
     const INFO = "info";
     
-    public static function json($mensagem, $tipo, $statusResponse = true, $extras = array())
+    public static function json($mensagem, $tipo = 'success', $statusResponse = true, $extras = array())
     {
         $dadosMsg = array(
             'mensagemVTT' => $mensagem,

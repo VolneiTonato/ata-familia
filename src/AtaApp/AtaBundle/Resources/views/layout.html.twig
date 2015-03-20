@@ -10,6 +10,7 @@
 {% block javascript %} {{ parent() }}  {% endblock %}
 
 {% block javascriptLocal %}
+    <script src="{{ asset('bundles/ataappata/js/BaseController.js') }}"></script>
     <script src="{{ asset('bundles/ataappata/js/AtaController.js') }}"></script>
     <script src="{{ asset('bundles/ataappata/js/TelefoneController.js') }}"></script>
     <script src="{{ asset('bundles/ataappata/js/EmailController.js') }}"></script>

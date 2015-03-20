@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AtaApp\AtaBundle\AtaAppAtaBundle(),
             new VTT\BaseControllerBundle\VTTBaseControllerBundle(),
-            new VTT\JsBundle\VTTJsBundle(),
             new VTT\Templates\JanuxBundle\VTTTemplatesJanuxBundle(),
             new VTT\UtilsBundle\VTTUtilsBundle()
         );

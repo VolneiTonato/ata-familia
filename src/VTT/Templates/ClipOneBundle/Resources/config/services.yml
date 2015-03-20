@@ -1,0 +1,3 @@
+services:
+    vtt.render_view_clipone:
+        class: VTT\Templates\ClipOneBundle\Libraries\RenderView

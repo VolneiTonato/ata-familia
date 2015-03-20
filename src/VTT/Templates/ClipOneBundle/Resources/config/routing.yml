@@ -1,0 +1,3 @@
+vtt_templates_clip_one_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: VTTTemplatesClipOneBundle:Default:index }

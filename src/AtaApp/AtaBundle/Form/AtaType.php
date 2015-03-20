@@ -21,6 +21,7 @@ class AtaType extends AbstractType
             ->add('municipio', new MunicipioType(), array(
                 'data_class' => 'AtaApp\AtaBundle\Entity\Municipio'
             ))
+            ->add('id', 'hidden')
             ->add('telefones', 'collection', array(
                 'type' => new TelefoneType(),
                 'allow_add' => true,

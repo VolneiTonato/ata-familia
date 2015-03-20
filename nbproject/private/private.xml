@@ -12,25 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/web-developer/root/ata-familia/src/VTT/JsBundle/Resources/public/classJS/AjaxVTT/AjaxVTT.js</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/views/Default/form.html.twig</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Entity/Municipio.php</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Repository/AtaRepository.php</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/views/extras/municipio.form.twig</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/config/doctrine/Email.orm.xml</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/views/Default/ajax/autocomplete-municipio.html.twig</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/views/extras/email.form.twig</file>
             <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/public/js/AtaController.js</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/config/doctrine/Ata.orm.xml</file>
             <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Controller/DefaultController.php</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Form/MunicipioType.php</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Repository/MunicipioRepository.php</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/config/doctrine/Telefone.orm.xml</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Repository/DataTable/AtaDataTable.php</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/config/doctrine/Municipio.orm.xml</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/VTT/UtilsBundle/Libraries/DataTable.php</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Respository/MunicipioRepository.php</file>
-            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/public/js/MunicipioController.js</file>
+            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/views/Default/ajax/view.html.twig</file>
+            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/views/Default/ajax/form-ata.html.twig</file>
+            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Resources/views/Default/ajax/autocomplete-municipio.html.twig</file>
+            <file>file:/D:/web-developer/root/ata-familia/src/AtaApp/AtaBundle/Entity/Municipio.php</file>
+            <file>file:/D:/web-developer/root/ata-familia/src/VTT/Templates/JanuxBundle/Resources/views/template.janux.html.twig</file>
         </group>
     </open-files>
 </project-private>

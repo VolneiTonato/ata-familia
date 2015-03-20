@@ -142,9 +142,11 @@ class Ata
      * @param \AtaApp\AtaBundle\Entity\Email $emails
      * @return Ata
      */
-    public function addEmail(\AtaApp\AtaBundle\Entity\Email $emails)
+    public function addEmail(\AtaApp\AtaBundle\Entity\Email $emails = null)
     {
-        if(!is_null($emails->getEmail())){
+        
+        if($emails instanceof Email){
+            $emails->setAta ($this);
             $this->emails[] = $emails;
         }
 

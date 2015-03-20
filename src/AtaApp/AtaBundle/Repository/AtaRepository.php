@@ -51,8 +51,9 @@ class AtaRepository extends EntityRepository
                     $dq->orWhere($dq->expr()->like('Ata.nome', ":{$fieldColumn}"))
                         ->setParameter($fieldColumn, sprintf('%%%s%%', $dataTable->getSearch()));
                 }elseif($fieldColumn === 'telefones'){
+                    $fone = \VTT\UtilsBundle\Helpers\TelefoneUtilsVTT::format($dataTable->getSearch());
                     $dq->orWhere($dq->expr()->in('Telefone.numero', ":{$fieldColumn}"))
-                       ->setParameter($fieldColumn, (array)  explode(',' , $dataTable->getSearch()));
+                       ->setParameter($fieldColumn, array($fone));
                 }elseif ($fieldColumn === 'municipio') {
                     $dq->orWhere($dq->expr()->like('Municipio.nome', ":{$fieldColumn}"))
                        ->setParameter($fieldColumn,  sprintf('%%%s%%', $dataTable->getSearch()));

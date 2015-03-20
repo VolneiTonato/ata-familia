@@ -1,0 +1,27 @@
+{
+  "name": "vtt-js",
+  "version": "2.0.0",
+  "authors": [
+    "scorpionX <volneitonato@gmail.com>"
+  ],
+  "description": "pacote que contém classe para ajax, mensagem, modal mensagem e loader",
+  "main": "vtt/Configuracoes.vtt.js",
+  "keywords": [
+    "ajax",
+    "mensagem",
+    "jquery-ajax-vtt",
+    "modal-vtt",
+    "loader-vtt"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/scorpionX",
+  "ignore": [
+    ".gitignore",
+    ".bowerrc"
+  ],
+  "dependencies": {
+    "blockui": "master",
+    "datatables": "*",
+    "jquery": "~2.1.3"
+  }
+}

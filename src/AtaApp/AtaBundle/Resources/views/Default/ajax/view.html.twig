@@ -1,0 +1,31 @@
+<div class="row-fluid">
+    <div class="box span12">
+        <div class="box-header" data-original-title>
+            <h2><i class="halflings-icon white list"></i><span class="break"></span>Detalhamento</h2>
+        </div>
+        <div class="box-content">
+            {% if ata is defined %}
+                <dl>
+                    <dt>Nome</dt>
+                    <dd>{{ata.nome}}</dd>
+                    <dt>Município</dt>
+                    <dd>{{ata.municipio.nome}} / {{ata.municipio.sigla}}</dd>
+                    <dt>Telefones</dt>
+                    {% if ata.telefones is defined and ata.telefones|length > 0 %}
+                        {% for telefone in ata.telefones %}
+                            <dd>{{telefone.numero}}</dd>
+                        {% endfor %}
+                    {% endif %}
+                    <dt>Emails</dt>
+                    {% if ata.emails is defined and ata.emails|length > 0 %}
+                        {% for email in ata.emails %}
+                            <dd>{{email.email}}</dd>
+                        {% endfor %}
+                    {% endif %}
+                </dl>
+            {% else %}
+                <h3 class="alert alert-danger">{{erro}}</h3>
+            {% endif%}
+        </div>
+    </div><!--/span-->
+</div>

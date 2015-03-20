@@ -1,5 +1,6 @@
-function EmailController(){
+var EmailController = (function(){
     
+    var $body = $('body');
     var configuracoes = {
         idBlocoPrincipal: '#ID_EMAIL_BLOCO_PRINCIPAL',
         idBlocoPrincipalClone : ".ID_EMAIL_BLOCO_LIST",
@@ -12,6 +13,16 @@ function EmailController(){
         }
     };
     
+    var obterNameInputEmail = function (idx) {
+        return settings.nameForm + '[emails][' + parseInt(idx) + '][email]';
+    };
+
+    var obterNameInputEmailId = function (idx) {
+        return settings.nameForm + '[emails][' + parseInt(idx) + '][id]';
+    };
+    
+    var emails = [];
+    
     var settings = {};
     
     var defaults = function(options){
@@ -21,6 +32,42 @@ function EmailController(){
         else
             settings = configuracoes;
         
+    };
+    
+    var _reset = function(){
+        $(configuracoes.idBlocoPrincipalClone).remove();
+    };
+    
+    var _addEmail = function (id, email) {
+
+        emails.push({
+            'email': email,
+            'id': id
+        });
+    };
+
+    var _adicionarComponentes = function (quantidadeElementos) {
+        if (quantidadeElementos > 1) {
+            for (var i = 1; i < quantidadeElementos; i++) {
+                $body.find(settings.botoes.idBtnAdd).trigger('click');
+            }
+        }
+    };
+
+    var _adicionarEmailsExistentes = function () {
+        for (var i = 0; i < emails.length; i++) {
+            var $o = $body.find('form[name="' + settings.nameForm + '"]');
+            $o.find('input[name="' + obterNameInputEmail(i) + '"]').val(emails[i].email);
+            $o.find('input[name="' + obterNameInputEmailId(i) + '"]').val(emails[i].id);
+        }
+    };
+
+    var _loadEmails = function () {
+        if (emails.length > 0) {
+            _adicionarComponentes(emails.length);
+            _adicionarEmailsExistentes();
+        }
+        emails = [];
     };
     
     
@@ -39,8 +86,8 @@ function EmailController(){
             var novoEmailInput = settings.nameForm + '[emails][' + parseInt(totalElement) + '][email]';
             var nomeId = settings.nameForm + '[emails][' + parseInt(totalElement) + '][id]';
 
-            $o.find(settings.idTelefoneInputNumero).attr('name', novoEmailInput).val('');
-            $o.find(settings.idTelefoneInputId).attr('name', nomeId).val('');
+            $o.find(settings.idInputEmail).attr('name', novoEmailInput).val('');
+            $o.find(settings.idInputId).attr('name', nomeId).val('');
 
             $(this).closest('div').before($o);
         });
@@ -53,15 +100,28 @@ function EmailController(){
         
     };
     
-    this.init = function(options){
+    var _init = function(options){
         
         defaults(options);
-        
         regEvents();
-        
-        return this;
     };
     
-    return this;
+    return {
+        init : function(options){
+            _init(options);
+            return this;
+        },
+        loadEmails: function () {
+            _loadEmails();
+            return this;
+        },
+        addEmail: function (id, email) {
+            _addEmail(id, email);
+            return this;
+        },
+        reset : function(){
+            _reset();
+        }
+    }
     
-}
+})();

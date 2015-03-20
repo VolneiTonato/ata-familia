@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR" ng-app="fidelizaSimAdm">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ PageTitle }}</title>
+        <!-- start: META -->
+        <meta charset="utf-8" />
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <!-- end: META -->
+        {% block styles %}
+            {% include 'VTTTemplatesClipOneBundle:extras:template.master/css.twig' %}
+        {% endblock %}
+
+    {% block fiveIcon %}{% endblock %}
+
+</head>
+
+<body {% if controllerAngular is defined %} ng-controller="{{ controllerAngular }}" {% endif %}>
+
+    <!-- start: HEADER -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <!-- start: TOP NAVIGATION CONTAINER -->
+        <div class="container">
+            <div class="navbar-header">
+                <!-- start: RESPONSIVE MENU TOGGLER -->
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="clip-list-2"></span>
+                </button>
+                <!-- end: RESPONSIVE MENU TOGGLER -->
+                <!-- start: LOGO -->
+                <a class="navbar-brand" href="{{ PageNameLink }}">{{ PageNameLogo }}</a>
+                <!-- end: LOGO -->
+            </div>       
+
+            <div class="navbar-tools">
+
+                <!-- start: TOP NAVIGATION MENU -->
+                <ul class="nav navbar-right">
+
+                    {% block navTools %} {% endblock %}
+                </ul>
+                <!-- end: TOP NAVIGATION MENU -->
+            </div>
+        </div>
+        <!-- end: TOP NAVIGATION CONTAINER -->
+    </div>
+    <!-- end: HEADER -->
+    <!-- start: MAIN CONTAINER -->
+    <div class="main-container">
+        <div class="navbar-content">
+            <!-- start: SIDEBAR -->
+            <div class="main-navigation navbar-collapse collapse">
+                <!-- start: MAIN MENU TOGGLER BUTTON -->
+                <div class="navigation-toggler">
+                    <i class="clip-chevron-left"></i>
+                    <i class="clip-chevron-right"></i>
+                </div>
+                <!-- end: MAIN MENU TOGGLER BUTTON -->
+
+                <!-- start: MAIN NAVIGATION MENU -->
+                <ul class="main-navigation-menu">
+                    {% block menuLateral %} {% endblock %}
+                </ul>
+                <!-- end: MAIN NAVIGATION MENU -->
+            </div>
+            <!-- end: SIDEBAR -->
+
+        </div>
+        <!-- start: PAGE -->
+        <div class="main-content">
+
+            <!-- end: SPANEL CONFIGURATION MODAL FORM -->
+            <div class="container">
+                <!-- start: PAGE HEADER -->
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        {% block breadCrumbs %}
+                            {% include 'VTTTemplatesClipOneBundle:extras:bread.html.twig' %}
+                        {% endblock %}
+
+                        <div class="page-header">
+                            <h1>{% block PageSubTitle %} {% endblock %}<small>{% block PageSubTitleDetail %}{% endblock %}</small></h1>
+                        </div>
+
+                        <!-- end: PAGE TITLE & BREADCRUMB -->
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        {% block mensagemFlash %} {% endblock %}
+
+                        {% block body %} {% endblock %}
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <!-- end: PAGE -->
+    </div>
+    <!-- end: MAIN CONTAINER -->
+    <!-- start: FOOTER -->
+    <div class="footer clearfix">
+        <div class="footer-inner">
+        {% block footer %}{% endblock %}
+    </div>
+    <div class="footer-items">
+        <span class="go-top"><i class="clip-chevron-up"></i></span>
+    </div>
+</div>
+
+{% block javascript %}
+    {% include 'VTTTemplatesClipOneBundle:extras:template.master/js.twig' %}
+{% endblock %}
+
+
+{% block javascriptVTT %}
+    <script src="{{ asset('js/bower/blockui/jquery.blockUI.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/Configuracoes.vtt.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/AjaxVTT/AjaxVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/DataTableVTT/DataTableVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/LoaderVTT/LoaderVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/MensagemVTT/MensagemVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/ModalVTT/ModalVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/QuestionVTT/QuestionVTT.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bower/vtt-js/vtt/classJS/UtilsVTT/UtilsVTT.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+
+{% block javascriptLocal %} {% endblock %}
+
+
+
+</body>
+</html>

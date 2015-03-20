@@ -15,8 +15,6 @@
     "src"
   ],
   "dependencies": {
-    "blockui": "master",
-    "data-table": "~0.1.5",
-    "jquery": "~2.1.3"
+    "vtt-js" : "*"
   }
 }

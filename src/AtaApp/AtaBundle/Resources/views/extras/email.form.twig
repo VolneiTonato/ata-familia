@@ -34,3 +34,12 @@
         </button>
     </div>
 </div>
+
+<script>
+    {% if emails is defined and  emails|length > 0 %}
+        {% for email in emails %}
+            EmailController.addEmail('{{ email.id }}', '{{ email.email }}');
+        {% endfor %}
+            EmailController.loadEmails();
+    {% endif %}
+</script>

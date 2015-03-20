@@ -1,6 +1,16 @@
-function TelefoneController(){
+var TelefoneController = (function(){
     
     var $body = $('body');
+    
+    var telefones = [];
+
+    var obterNameInputNumeroTelefone = function (idx) {
+        return settings.nameForm + '[telefones][' + parseInt(idx) + '][numero]';
+    };
+
+    var obterNameInputIdTelefone = function (idx) {
+        return settings.nameForm + '[telefones][' + parseInt(idx) + '][id]';
+    };
     
     var configuracoes = {
         idBlocoTelefone: '#ID_TELEFONE_BLOCO_PRINCIPAL',
@@ -24,6 +34,11 @@ function TelefoneController(){
             settings = configuracoes;
         
     };
+    
+    var _reset = function(){
+        $(configuracoes.idBlocoTelefoneList).remove();
+    };
+    
     
     
     
@@ -54,22 +69,70 @@ function TelefoneController(){
         
         $body.on({
             change : function(){
-                UtilsVTT().maskFone($(this), true);
+                UtilsVTT.maskTelefone($(this), true);
             }
         }, settings.idTelefoneInputNumero);
         
         
     };
     
-    this.init = function(options){
+    
+    var _addTelefone = function (id, numero) {
+
+        telefones.push({
+            'numero': numero,
+            'id': id
+        });
+    };
+
+    var _adicionarComponentes = function (quantidadeElementos) {
+        if (quantidadeElementos > 1) {
+            for (var i = 1; i < quantidadeElementos; i++) {
+                $body.find(settings.botoes.idBtnAdd).trigger('click');
+            }
+        }
+    };
+
+    var _adicionarTelefonesExistentes = function () {
+        for (var i = 0; i < telefones.length; i++) {
+            var $o = $body.find('form[name="' + settings.nameForm + '"]');
+            $o.find('input[name="' + obterNameInputNumeroTelefone(i) + '"]').val(telefones[i].numero).change();
+            $o.find('input[name="' + obterNameInputIdTelefone(i) + '"]').val(telefones[i].id);
+        }
+    };
+
+    var _loadTelefones = function () {
+        if (telefones.length > 0) {
+            _adicionarComponentes(telefones.length);
+            _adicionarTelefonesExistentes();
+        }
+        telefones = [];
+    };
+    
+    var _init = function(options){
         
         defaults(options);
         
         regEvents();
         
-        return this;
     };
     
-    return this;
+    return{
+        init : function(options){
+            _init(options);
+            return this;
+        },
+        loadTelefones: function () {
+            _loadTelefones();
+            return this;
+        },
+        addTelefone: function (id, numero) {
+            _addTelefone(id, numero);
+            return this;
+        },
+        reset : function(){
+            _reset();
+        }
+    };
     
-}
+})();

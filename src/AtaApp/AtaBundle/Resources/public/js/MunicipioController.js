@@ -1,4 +1,4 @@
-function MunicipioController() {
+var MunicipioController = (function() {
 
     var $body = $('body');
 
@@ -12,7 +12,7 @@ function MunicipioController() {
     var idDataTable = "#auto-complete-municipio";
 
 
-    this.resetForm = function () {
+    var _resetForm = function () {
         $(autocompleteObj.nome).val('');
         $(autocompleteObj.sigla).val('');
         $(autocompleteObj.id).val('');
@@ -21,11 +21,11 @@ function MunicipioController() {
 
 
 
-    this.autoCompletarMunicipio = function () {
+    var _autoCompletarMunicipio = function () {
         var obj = $(autocompleteObj.nome);
         if (obj.val().length >= 2) {
             AjaxVTT().send({
-                'vttUrl': ConfiguracoesVTT().baseUrl() + 'pesquisar-municipio',
+                'vttUrl': ConfiguracoesVTT.rootUrl() + 'pesquisar-municipio',
                 'vttData': {'nome': obj.val()},
                 'vttLoader': false,
                 'vttDebug': true,
@@ -39,7 +39,7 @@ function MunicipioController() {
         }
     };
 
-    this.selecionarMunicipioAutoComplete = function (e, tr) {
+    var _selecionarMunicipioAutoComplete = function (e, tr) {
 
         e.preventDefault();
         $(autocompleteObj.id).val($(tr).find('td').eq(0).text());
@@ -52,20 +52,33 @@ function MunicipioController() {
 
 
     var regEvents = function () {
-
-        $(autocompleteObj.nome).on({
+        
+        $body.on({
 
             keyup: function () {
-                autoCompletarMunicipio();
+                _autoCompletarMunicipio();
             }
-        });
+        }, autocompleteObj.nome);
     };
 
-    this.init = function (options) {
+    var _init = function (options) {
 
         regEvents();
     };
 
-    return this;
+    return{
+        init : function(options){
+            _init(options);
+            return this;
+        },
+        autoCompletarMunicipio : function(){
+            _autoCompletarMunicipio();
+            return this;
+        },
+        selecionarMunicipioAutoComplete : function(e, tr){
+            _selecionarMunicipioAutoComplete(e, tr);
+            return this;
+        }
+    };
 
-}
+})();

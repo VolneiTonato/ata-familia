@@ -47,6 +47,7 @@ class DataTable {
         $this->order = $this->request->get(self::_ORDER);        
         $this->idxColumnSort = $this->order[0]['column'];
         $this->typeOrderColumn = $this->order[0]['dir'];
+         
         
         $this->defaults();
     }
@@ -54,7 +55,7 @@ class DataTable {
     private function defaults()
     {
         $this->outPut = array(
-            self::_DRAW => $this->request->get(self::_DRAW),
+            self::_DRAW => (int) $this->request->get(self::_DRAW),
             self::_TOTAL_RECORDS => 0,
             self::_RECORDS_FILTERED => 0
         );
@@ -137,7 +138,7 @@ class DataTable {
 
     public function getColumnNameOrderBy()
     {
-        return $this->columns[$this->idxColumnSort]['name'];
+        return $this->columns[$this->idxColumnSort]['data'];
     }
     
     public function getTypeOrderBy()

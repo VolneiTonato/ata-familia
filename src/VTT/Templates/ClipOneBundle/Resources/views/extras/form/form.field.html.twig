@@ -1,0 +1,25 @@
+{% block form_row %}
+
+    {{ form_label(form,null, { 'label_attr' : {'class' : 'control-label'}}) }}
+    
+    
+    {% set attr = attr|merge({'class': 'form-control ' ~ (attr.class|default(''))|trim }) %}
+
+    {{ form_widget(form, {'attr' : attr}) }}
+
+
+    {{ form_errors(form) }}
+
+{% endblock %}
+
+
+
+{% block form_row_no_label %}
+    {{ form_widget(form) }}
+
+    {{ form_errors(form) }}
+{% endblock %}
+
+
+
+

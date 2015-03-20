@@ -23,7 +23,7 @@ class BaseControllerVTTListener {
 
         $controllerObject = $controller[0];
         if ($controllerObject instanceof \VTT\BaseControllerBundle\Controller\BaseControllerVTTInterface) {
-            $controllerObject->__init($this->container, $event->getRequest());
+            $controllerObject->__init($this->container);
         }
     }
 }

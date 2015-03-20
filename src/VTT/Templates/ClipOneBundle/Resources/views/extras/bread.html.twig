@@ -1,0 +1,28 @@
+{% if Bread is defined %}
+
+
+    {% set tot = Bread|length %}
+
+    <ol class="breadcrumb">
+        {% for i in range(0, tot - 1) %}
+
+            {% if i == (tot - 1) %}
+                {% set class = 'active' %}
+            {% else %}
+                {% set class = '' %}
+            {% endif %}
+
+            <li class="{{ class }}">
+                {% if i == (tot - 1) %}
+                    {{ Bread[i].text }}
+                {% else %}
+                    {% if i == 0 %} <i class="clip-home-3"></i> {% endif %}
+                    <a href="{{ Bread[i].url }}">{{ Bread[i].text }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+
+    </ol>
+
+
+{% endif %}

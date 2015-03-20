@@ -12,7 +12,7 @@ trait traitVariaveisControllerTemplateVTT {
     
     /**
      *
-     * @var \VTT\Templates\UtilsBundle\Libraries\BreadsCrumb
+     * @var \VTT\UtilsBundle\Libraries\BreadsCrumb\BreadsCrumb
      */
     protected $_libBreadCrumb;
 

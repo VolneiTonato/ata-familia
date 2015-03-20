@@ -8,10 +8,10 @@ use Symfony\Component\DependencyInjection\Container;
 
 class BaseControllerVTT extends Controller implements BaseControllerVTTInterface {
 
-    private $request;
+
     
-    public function __init(Container $container, Request $request) {
-        $this->request = $request;
+    public function __init(Container $container) {
+
     }
     
     /**
@@ -20,7 +20,7 @@ class BaseControllerVTT extends Controller implements BaseControllerVTTInterface
      */
     public function request()
     {
-        return $this->request;
+        return $this->get('request');
     }
     
     /**
@@ -40,6 +40,22 @@ class BaseControllerVTT extends Controller implements BaseControllerVTTInterface
     public function repository($repository)
     {
         return $this->getDoctrine()->getRepository($repository);
+    }
+    
+    public function validarPermissao(Array $permissoes, $lResponseAjax = FALSE)
+    {
+        $lTemPermissao = FALSE;
+        foreach($permissoes as $permissao){
+            if($this->get('security.context')->isGranted($permissao)){
+                $lTemPermissao = TRUE;
+            }
+        }
+        
+        if($lTemPermissao == FALSE){
+            if($lResponseAjax)
+                throw new \Exception('Sem permissão');
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+        }
     }
 
 }

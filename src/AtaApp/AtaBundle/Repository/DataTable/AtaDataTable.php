@@ -42,8 +42,8 @@ class AtaDataTable {
                 'DT_RowId' => $ata->getId(),
                 'DT_RowData' => array('pkey' => $ata->getId()),
                 'descricao' => $ata->getNome(),
-                'telefones' => implode(',', $telefones),
-                'emails' => implode(',', $emails),
+                'telefones' => implode('<br />', $telefones),
+                'emails' => implode('<br />', $emails),
                 'municipio' => $ata->getMunicipio()->getNome(),
                 'estado' => $ata->getMunicipio()->getSigla()
             );
