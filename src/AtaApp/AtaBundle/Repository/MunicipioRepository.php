@@ -21,7 +21,9 @@ class MunicipioRepository extends EntityRepository {
     {
         $em = $this->_em;
         
-        if ($o->getId())
+        $municipioExistente = $em->getRepository('AtaAppAtaBundle:Municipio')->findByNome($o->getNome());
+        
+        if ($o->getId() || $municipioExistente)
             $em->merge($o);
         else
             $em->persist($o);
@@ -45,6 +47,8 @@ class MunicipioRepository extends EntityRepository {
             $dq->andWhere($dq->expr()->like('Municipio.sigla', ':sigla'))
                ->setParameter('sigla', '%' . $o->getSigla() . '%');
         }
+        
+        $dq->setMaxResults(10);
         
         if($this->toArray)
             return $dq->getQuery ()->getArrayResult ();

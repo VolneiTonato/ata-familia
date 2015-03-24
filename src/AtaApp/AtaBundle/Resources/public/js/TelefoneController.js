@@ -39,6 +39,11 @@ var TelefoneController = (function(){
         $(configuracoes.idBlocoTelefoneList).remove();
     };
     
+    var _limparTelefonePrincipal = function(){
+        $(configuracoes.idBlocoTelefone).find(configuracoes.idTelefoneInputNumero).val('');
+        $(configuracoes.idBlocoTelefone).find(configuracoes.idTelefoneInputId).val('');
+    };
+    
     
     
     
@@ -132,6 +137,9 @@ var TelefoneController = (function(){
         },
         reset : function(){
             _reset();
+        },
+        limparTelefonePrincipal : function(){
+            _limparTelefonePrincipal();
         }
     };
     

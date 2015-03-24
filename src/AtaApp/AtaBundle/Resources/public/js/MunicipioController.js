@@ -31,8 +31,8 @@ var MunicipioController = (function() {
                 'vttDebug': true,
                 'vttDataType': 'html'
             }, function (result) {
-                $(autocompleteObj.blocoAutocompletar).html(result);
-                DataTableVTT().run(idDataTable).registrarEventos();
+                $(autocompleteObj.blocoAutocompletar).empty().html(result);
+                //DataTableVTT().run(idDataTable).registrarEventos();
             });
         } else {
             $(autocompleteObj.blocoAutocompletar).html('');
@@ -78,7 +78,12 @@ var MunicipioController = (function() {
         selecionarMunicipioAutoComplete : function(e, tr){
             _selecionarMunicipioAutoComplete(e, tr);
             return this;
+        },
+        reset : function(){
+            _resetForm();
         }
+        
+        
     };
 
 })();

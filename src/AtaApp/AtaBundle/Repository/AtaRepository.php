@@ -32,10 +32,19 @@ class AtaRepository extends EntityRepository
         }
     }
     
+    public function totalRegistros()
+    {
+        $dq = $this->createQueryBuilder('Ata');
+        $result = $dq->select($dq->expr()->count('Ata.id'))
+                     ->getQuery()->getResult();
+
+        return (int) $result[0][1];
+    }
+    
     public function ataPaginacao(DataTable &$dataTable)
     {
         $dq = $this->createQueryBuilder('Ata');
-        $dq->join('Ata.telefones', 'Telefone');
+        $dq->leftJoin('Ata.telefones', 'Telefone');
         $dq->join('Ata.municipio', 'Municipio');
         
         

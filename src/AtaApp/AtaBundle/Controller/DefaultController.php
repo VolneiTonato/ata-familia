@@ -21,7 +21,7 @@ class DefaultController extends BaseController
     public function __init(Container $container) {
         parent::__init($container);
         
-        $this->_libRenderView->setPageTitle('demo js');
+        $this->_libRenderView->setPageTitle('XIII Encontro Família Gaiescki');
         $this->_libBreadCrumb->addItem('Inicio', $this->generateUrl('ata_familia'));
     }
 
@@ -33,10 +33,10 @@ class DefaultController extends BaseController
     {     
         $this->_libRenderView->setBreadCrumb($this->_libBreadCrumb);
         
-        $atas = $this->repository('AtaAppAtaBundle:Ata')->findAll();
+        $atas = $this->repository('AtaAppAtaBundle:Ata')->totalRegistros();
         
         return $this->_libRenderView->toRenderMerge(array(
-           'atas' => $atas
+           'totalRegistros' => $atas
         ));
         
     }
@@ -47,7 +47,7 @@ class DefaultController extends BaseController
      */
     public function cadastroAction()
     {
-        $this->_libBreadCrumb->addItem('Demo js');
+        $this->_libBreadCrumb->addItem('Novo');
         $this->_libRenderView->setBreadCrumb($this->_libBreadCrumb);
 
         return $this->_libRenderView->toRender();
@@ -62,7 +62,7 @@ class DefaultController extends BaseController
         $id = $this->request()->get('id');
         
         $ata = null;
-        file_put_contents('log.txt', $id);
+        
         if($id){
             $ata = $this->repository('AtaAppAtaBundle:Ata')->find($id);
         }

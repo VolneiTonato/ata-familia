@@ -84,10 +84,14 @@ class Ata
      * @param \AtaApp\AtaBundle\Entity\Telefone $telefones
      * @return Ata
      */
-    public function addTelefone(\AtaApp\AtaBundle\Entity\Telefone $telefones)
+    public function addTelefone(\AtaApp\AtaBundle\Entity\Telefone $telefones = null)
     {
-        $telefones->setAta($this);
-        $this->telefones[] = $telefones;
+        
+        if($telefones instanceof Telefone){
+            $telefones->setAta ($this);
+            $this->telefones[] = $telefones;
+        }
+        
 
         return $this;
     }

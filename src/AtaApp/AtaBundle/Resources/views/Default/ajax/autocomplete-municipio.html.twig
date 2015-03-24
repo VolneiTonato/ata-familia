@@ -14,16 +14,17 @@
                     </tr>
                 </thead>   
                 <tbody>
-                    <tr>
-                        {% for municipio in municipios %}
+                    {% for municipio in municipios %}
+                        <tr>
                             <td style="display: none;">{{ municipio.id }}</td>
                             <td>{{ municipio.nome }}</td>
                             <td class="center">{{ municipio.sigla }}</td>
                             <td class="center">
                                 <button class="btn btn-primary" onclick="MunicipioController.selecionarMunicipioAutoComplete(event, $(this).closest('tr'));">Selecionar</button>
                             </td>                         
-                        {% endfor %}
-                    </tr>  
+
+                        </tr>  
+                    {% endfor %}
                 </tbody>
             </table>
         {% else %}
