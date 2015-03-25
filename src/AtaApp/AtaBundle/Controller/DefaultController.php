@@ -21,7 +21,7 @@ class DefaultController extends BaseController
     public function __init(Container $container) {
         parent::__init($container);
         
-        $this->_libRenderView->setPageTitle('XIII Encontro Família Gaiescki');
+        $this->_libRenderView->setPageTitle('TESTE');
         $this->_libBreadCrumb->addItem('Inicio', $this->generateUrl('ata_familia'));
     }
 
@@ -67,7 +67,7 @@ class DefaultController extends BaseController
             $ata = $this->repository('AtaAppAtaBundle:Ata')->find($id);
         }
         
-        $form = $this->createForm(new AtaType(), $ata);
+        $form = $this->createForm(new AtaType($this->em()), $ata);
         
         return array('form' => $form->createView(), 'ata' => $ata);
     }
@@ -88,7 +88,7 @@ class DefaultController extends BaseController
             else
                 $ata = new \AtaApp\AtaBundle\Entity\Ata();
 
-            $form = $this->createForm(new AtaType(), $ata);
+            $form = $this->createForm(new AtaType($this->em()), $ata);
 
             if($this->request()->isMethod('POST')){
                 $form->submit($this->request());
@@ -179,5 +179,24 @@ class DefaultController extends BaseController
             return array('erro' => $e->getMessage());
         }
     }
-
+    
+    /**
+     * @Route("/exportar.{_format}", name="ata_exportacao" , requirements={"_format" = "excel|json"}, defaults={"_format"="excel"})
+     */
+    public function exportarDadosAction()
+    {
+        $format = $this->request()->get('_format');
+        $templateBase = 'AtaAppAtaBundle:extras:exportacao/%s.html.twig';
+        
+        $atas = $this->repository('AtaAppAtaBundle:Ata')->listExportacao();
+        
+        if($format === 'excel'){
+            $response = $this->render( sprintf($templateBase, $format) , array('dados' => $atas));
+            $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
+            $response->headers->set('Content-Disposition', 'attachment; filename='.basename('ata.xls'));
+            $response->headers->set('Pragma', 'public');
+            $response->headers->set('Cache-Control', 'maxage=1');
+            return $response;
+        }
+    }
 }

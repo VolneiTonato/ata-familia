@@ -21,17 +21,15 @@ class MunicipioRepository extends EntityRepository {
     {
         $em = $this->_em;
         
-        $municipioExistente = $em->getRepository('AtaAppAtaBundle:Municipio')->findByNome($o->getNome());
+        $municipioExistente = $em->getRepository('AtaAppAtaBundle:Municipio')->find($o->getId());
         
-        if ($o->getId() || $municipioExistente)
-            $em->merge($o);
-        else
-            $em->persist($o);
-
-
-        $em->flush();
-        
-        return $em->getRepository('AtaAppAtaBundle:Municipio')->find($o->getId());
+        if($municipioExistente){
+            if($municipioExistente->getNome() != $o->getNome() || $municipioExistente->getSigla() != $o->getSigla())
+                $this->_em->merge($o);
+        }elseif (!$o->getId()) {
+            $this->_em->persist($o);
+            $this->_em->flush();
+        }
     }
 
     public function pesquisar(MunicipioPesq $o)

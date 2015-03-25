@@ -3,7 +3,7 @@ var ConfiguracoesVTT = (function(){
     var _webFiles = '/ata-familia/web/';
     var _rootURl = '/ata-familia/web/';
     var _webFilesVTT = _webFiles + 'js/bower/vtt-js/';
-    var _host = 'http://localhost';
+    var _host = 'http://localhost:4536';
     var _fullUrl = _host + _rootURl;
     
     return {

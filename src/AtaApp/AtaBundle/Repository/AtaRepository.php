@@ -18,15 +18,17 @@ class AtaRepository extends EntityRepository
     public function save(Entity\Ata $ata)
     {
         try{
-            $em = $this->_em;
-            
-            $municipio = $em->getRepository('AtaAppAtaBundle:Municipio')->save($ata->getMunicipio());
-            
-            $ata->setMunicipio($municipio);
-            
-            $em->persist($ata);
-            $em->flush();
+            $this->_em->getRepository('AtaAppAtaBundle:Municipio')->save($ata->getMunicipio());
 
+            if($ata->getId()){
+               $municipio = $this->_em->getRepository('AtaAppAtaBundle:Municipio') ->find($ata->getMunicipio()->getId());
+               $ata->setMunicipio($municipio);
+               $this->_em->merge($ata);
+            }else{                
+                $this->_em->persist ($ata);
+            }
+
+            $this->_em->flush();
         } catch (\Exception $ex) {
             throw new \Exception($ex);
         }
@@ -97,5 +99,17 @@ class AtaRepository extends EntityRepository
         $dataTable->paginationToPaginatorORM($paginator);
 
         return $paginator->getQuery()->getResult();
+    }
+    
+    
+    public function listExportacao()
+    {
+        $dq = $this->createQueryBuilder('Ata');
+        
+        $dq->join('Ata.municipio', 'Municipio');
+        
+        $dq->orderBy('Municipio.nome,Ata.nome', 'asc');
+        
+        return $dq->getQuery()->getResult();
     }
 }

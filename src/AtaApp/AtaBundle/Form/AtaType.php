@@ -10,6 +10,11 @@ use Symfony\Component\Form\FormEvents;
 
 class AtaType extends AbstractType
 {
+    private $em;
+    
+    public function __construct(\Doctrine\ORM\EntityManager $em) {
+        $this->em = $em;
+    }
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -19,7 +24,9 @@ class AtaType extends AbstractType
         $builder
             ->add('nome', null, array('label' => 'Nome'))
             ->add('municipio', new MunicipioType(), array(
-                'data_class' => 'AtaApp\AtaBundle\Entity\Municipio'
+                'data_class' => 'AtaApp\AtaBundle\Entity\Municipio',
+               // 'virtual' => true,
+                'by_reference' => false
             ))
             ->add('id', 'hidden')
             ->add('telefones', 'collection', array(
@@ -42,15 +49,23 @@ class AtaType extends AbstractType
                 
         ;
         
-        
+        /*
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event){
-            $data = $event->getData();
+
             
-        });
+        });*/
         
         
         $builder->addEventListener(FormEvents::SUBMIT, function(FormEvent $event){
             $data = $event->getData();
+
+            if($data->getMunicipio() instanceof \AtaApp\AtaBundle\Entity\Municipio){
+                if($data->getMunicipio()->getId()){
+                    $municipio = $this->em->getRepository('AtaAppAtaBundle:Municipio')->find($data->getMunicipio()->getId());
+                    //$data->setMunicipio($municipio);
+                }
+            }
+            
         });
     }
     

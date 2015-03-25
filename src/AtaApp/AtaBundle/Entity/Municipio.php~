@@ -80,4 +80,15 @@ class Municipio
     {
         return $this->id;
     }
+    
+    public function setId($id)
+    {
+        $this->id = $id;
+        
+        return $this;
+    }
+    
+    public function __toString() {
+        return $this->nome;
+    }
 }

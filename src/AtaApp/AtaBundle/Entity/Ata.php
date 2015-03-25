@@ -124,6 +124,7 @@ class Ata
      */
     public function setMunicipio(\AtaApp\AtaBundle\Entity\Municipio $municipio = null)
     {
+
         $this->municipio = $municipio;
 
         return $this;
